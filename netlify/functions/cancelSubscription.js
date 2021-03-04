@@ -12,7 +12,8 @@ exports.handler = (event, context, callback) => {
     .catch(error => {
       callback(null, {
         statusCode: 422,
-        body: JSON.stringify({ message: 'ERROR GETTING CUSTOMERS', error })
+        body: JSON.stringify({ message: 'ERROR GETTING CUSTOMERS'}),
+        error
       })
     })
 }

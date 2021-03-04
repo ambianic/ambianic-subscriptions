@@ -58,6 +58,102 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "create-subscription",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonResponse = pm.response.json()",
+							"",
+							"pm.test(\"Returns a response object\", () => {",
+							"   pm.expect(jsonResponse).to.be.an(\"object\");",
+							"})",
+							"",
+							"pm.test(\"Returns needed fields in response object\", () => {",
+							"    pm.expect(jsonResponse.object).to.eql(\"customer\");",
+							"",
+							"  const expectedInvoice = {",
+							"        custom_fields: null,",
+							"        default_payment_method: null,",
+							"        footer: null",
+							"  };",
+							"",
+							"  pm.expect(jsonResponse.invoice_settings).to.deep.include(expectedInvoice);",
+							"}) "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "https://14fecb7f-38f9-43ce-ae90-9381932906cf.mock.pstmn.io/create-stripe-subscriber",
+					"protocol": "https",
+					"host": [
+						"14fecb7f-38f9-43ce-ae90-9381932906cf",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"create-stripe-subscriber"
+					]
+				},
+				"description": "Create a new stripe user and a subscription"
+			},
+			"response": []
+		},
+		{
+			"name": "cancel-subscription",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonResponse = pm.response.json()",
+							"",
+							"pm.test(\"Returns a deleted customer response object\", () => {",
+							"   pm.expect(jsonResponse).to.be.an(\"object\");",
+							"",
+							"   pm.expect(jsonResponse.object).to.eql(\"customer\");",
+							"",
+							"   pm.expect(jsonResponse.deleted).to.be.a(\"boolean\");",
+							"",
+							"   pm.expect(jsonResponse.deleted).to.eql(true);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://14fecb7f-38f9-43ce-ae90-9381932906cf.mock.pstmn.io/cancel-subscription",
+					"protocol": "https",
+					"host": [
+						"14fecb7f-38f9-43ce-ae90-9381932906cf",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"cancel-subscription"
+					]
+				},
+				"description": "Cancels a user subscription on stripe"
+			},
+			"response": []
 		}
 	],
 	"event": [
