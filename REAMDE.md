@@ -1,1 +1,0 @@
-## Ambianic Netlify Serverless functions
