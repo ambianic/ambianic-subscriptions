@@ -24,10 +24,6 @@ jobs:
 
     - name: Run the API and Postman's tests
       run: |
-        npm test &
-        sleep 2
-        cd tests/postman/ && ./node_modules/newman/bin/newman.js run *
-        kill -9 `lsof -i:5000 -t`
+        cd tests/postman/ && newman run *
       env:
-        API_HOST: 0.0.0.0
         CI: true

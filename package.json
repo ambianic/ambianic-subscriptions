@@ -5,7 +5,6 @@
   "scripts": {
     "build": "parcel build index.html",
     "dev": "parcel index.html",
-    "test": "parcel build index.html"
   },
   "license": "MIT",
   "dependencies": {
