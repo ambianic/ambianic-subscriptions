@@ -1,4 +1,4 @@
-name: Functions CI - Integration Test 
+name: Ambianic Functions API CI Test 
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -24,9 +24,7 @@ jobs:
 
     - name: Run the API and Postman's tests
       run: |
-        npm test &
-        sleep 2
-        cd tests/postman/ && ./node_modules/newman/bin/newman.js run *
+        cd tests/postman/ && newman run *
         kill -9 `lsof -i:5000 -t`
       env:
         API_HOST: 0.0.0.0
