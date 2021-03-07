@@ -26,5 +26,4 @@ jobs:
       run: |
         cd tests/postman/ && newman run *
       env:
-        API_HOST: 0.0.0.0
         CI: true
