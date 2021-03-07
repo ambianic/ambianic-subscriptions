@@ -25,7 +25,6 @@ jobs:
     - name: Run the API and Postman's tests
       run: |
         cd tests/postman/ && newman run *
-        kill -9 `lsof -i:5000 -t`
       env:
         API_HOST: 0.0.0.0
         CI: true
