@@ -5,9 +5,11 @@
   "scripts": {
     "build": "parcel build index.html",
     "dev": "parcel index.html",
+    "generate-swagger": "openapi-generator-cli generate -i docs/*.yaml -g javascript -o docs"
   },
   "license": "MIT",
   "dependencies": {
+    "@openapitools/openapi-generator-cli": "^2.1.26",
     "newman": "^5.2.2",
     "stripe": "^8.135.0"
   },

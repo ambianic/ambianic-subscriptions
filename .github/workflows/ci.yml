@@ -1,18 +1,17 @@
 name: Ambianic Functions API CI Test 
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on: [pull_request]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: Git checkout 
       uses: actions/checkout@v2
+    
+    - name: Install application dependencies
+      run: npm install
 
     - name: Install Node JS ${{ matrix.node-version }}
       uses: actions/setup-node@v1
@@ -28,3 +27,19 @@ jobs:
       env:
         API_HOST: 0.0.0.0
         CI: true
+     
+    - name: Generate OpenAPI specs
+      run: |
+        npm run generate-swagger && ./cleanup.sh
+    
+    - name: Run the Openapi API tests
+      run: |
+        cd docs && sed -i 's/"version": "0.1"/"version": "1.0.0"/' package.json && npm install && npm test
+      env:
+        CI: true
+    
+    - name: Code Coverage Report
+      uses: codecov/codecov-action@v1
+      with:
+        file: ./docs/coverage/coverage-final.json
+        fail_ci_if_error: true 
