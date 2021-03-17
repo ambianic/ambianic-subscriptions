@@ -3,7 +3,7 @@
 		"_postman_id": "4b8f433d-5891-4ae3-bb49-ca6942a9b08d",
 		"name": "ambianic-functions-collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
+	}, 
 	"item": [
 		{
 			"name": "get-customers",
@@ -43,13 +43,12 @@
 					}
 				],
 				"url": {
-					"raw": "https://ambianic-functions.netlify.app/.netlify/functions/getCustomers",
-					"protocol": "https",
+					"raw": "http://localhost:5050/.netlify/functions/getCustomers",
+					"protocol": "http",
 					"host": [
-						"ambianic-functions",
-						"netlify",
-						"app"
+						"localhost"
 					],
+					"port": "5050",
 					"path": [
 						".netlify",
 						"functions",

@@ -21,9 +21,9 @@ jobs:
     - name: Install Newman dependency
       run: npm install --prefix tests/postman/
 
-    - name: Run the API and Postman's tests
-      run: |
-        cd tests/postman/ && newman run *
+    - name: Start Netlify Dev for local function testing
+      run:  npm run netlify-dev && sleep 15 && cd tests/postman/ && newman run *
+
       env:
         CI: true
      
@@ -37,6 +37,7 @@ jobs:
       env:
         CI: true
     
+    # code coverage report
     - name: Code Coverage Report
       uses: codecov/codecov-action@v1
       with:
