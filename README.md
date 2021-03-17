@@ -6,5 +6,3 @@
 
 The image below shows the architecture of these serverless functions in connection with the Ambianic [PWA](https://github.com/ambianic/ambianic-ui/).
 ![serverless-functions-architecture](./assets/serverless-architecture.png)
-
- 
