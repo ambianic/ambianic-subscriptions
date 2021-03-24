@@ -11,6 +11,7 @@
   "dependencies": {
     "@openapitools/openapi-generator-cli": "^2.1.26",
     "newman": "^5.2.2",
+    "nodemailer": "^6.5.0",
     "stripe": "^8.135.0"
   },
   "devDependencies": {
