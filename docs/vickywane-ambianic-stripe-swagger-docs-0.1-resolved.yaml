@@ -1,18 +1,18 @@
----
 openapi: 3.0.1
 info:
   title: Ambianic Serverless functions API Definition
   description: An API Definition for Ambianic Serverless functions created using Swagger
-  version: "0.1"
+  version: 1.0.0-oas3
 servers:
-- url: https://ambianic-functions.netlify.app
-- url: https://14fecb7f-38f9-43ce-ae90-9381932906cf.mock.pstmn.io
+  - url: 'http://localhost:5050'
 paths:
   /create-stripe-subscriber:
     post:
-      description: Serverless function for creating a customer on stripe and subscribing them to an item. 
+      description: >-
+        Serverless function for creating a customer on stripe and subscribing
+        them to an item.
       responses:
-        "200":
+        '200':
           description: Returns stripe customer response.
           content:
             text/html; charset=utf-8:
@@ -20,32 +20,33 @@ paths:
                 type: string
               examples: {}
       servers:
-      - url: https://14fecb7f-38f9-43ce-ae90-9381932906cf.mock.pstmn.io
-    servers:
-    - url: https://14fecb7f-38f9-43ce-ae90-9381932906cf.mock.pstmn.io
+        - url: 'http://localhost:5050'
   /.netlify/functions/getCustomers:
     get:
-      description: Serverless function to fetch all customers from a stripe service account.
+      description: >-
+        Serverless function to fetch all customers from a stripe service
+        account.
       responses:
-        "200":
+        '200':
           description: Returns an array containing stripe's customer object data.
       servers:
-      - url: https://ambianic-functions.netlify.app
+        - url: 'http://localhost:5050'
     servers:
-    - url: https://ambianic-functions.netlify.app
+      - url: 'http://localhost:5050'
   /cancel-subscription:
     post:
-      description: Serverless function to cancel a user subscription. Requires `customer_id`.
+      description: >-
+        Serverless function to cancel a user subscription. Requires
+        `customer_id`.
       responses:
-        "200":
-          description: Returns an deleted customer object. 
+        '200':
+          description: Returns an deleted customer object.
           content:
             text/html; charset=utf-8:
               schema:
                 type: string
               examples: {}
       servers:
-      - url: https://14fecb7f-38f9-43ce-ae90-9381932906cf.mock.pstmn.io
+        - url: 'http://localhost:5050'
     servers:
-    - url: https://14fecb7f-38f9-43ce-ae90-9381932906cf.mock.pstmn.io
-components: {}
+      - url: 'http://localhost:5050'

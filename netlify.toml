@@ -2,6 +2,7 @@
 command = "npm build"
 functions = "netlify/functions"
 
+
 [[headers]]
 for = "/*"
 [headers.values]

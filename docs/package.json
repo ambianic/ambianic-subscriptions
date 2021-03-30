@@ -1,13 +1,13 @@
 {
   "name": "ambianic_serverless_functions_api_definition",
-  "version": "1",
+  "version": "1.0.0-oas3",
   "description": "An_API_Definition_for_Ambianic_Serverless_functions_created_using_Swagger",
   "license": "Unlicense",
   "main": "dist/index.js",
   "scripts": {
     "build": "babel src -d dist",
     "prepack": "npm run build",
-    "test": "nyc --reporter=json mocha --require @babel/register --recursive"
+    "test": "mocha --require @babel/register --recursive"
   },
   "browser": {
     "fs": false
@@ -38,8 +38,6 @@
     "@babel/register": "^7.0.0",
     "expect.js": "^0.3.1",
     "mocha": "^8.0.1",
-    "mocha-lcov-reporter": "^1.3.0",
-    "nyc": "^15.1.0",
     "sinon": "^7.2.0"
   },
   "files": [

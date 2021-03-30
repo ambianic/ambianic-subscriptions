@@ -1,6 +1,6 @@
 # AmbianicServerlessFunctionsApiDefinition.DefaultApi
 
-All URIs are relative to *https://ambianic-functions.netlify.app*
+All URIs are relative to *http://localhost:5050*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
