@@ -1,15 +1,20 @@
 name: Ambianic Functions API CI Test 
 
-on: [pull_request]
+on:
+  # Trigger the workflow on push or pull request agaisnt main branch
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Git checkout 
-      uses: actions/checkout@v2
-    
+    - uses: actions/checkout@v1
     - name: Install application dependencies
       run: npm install
 
@@ -22,24 +27,38 @@ jobs:
       run: npm install --prefix tests/postman/
 
     - name: Start Netlify Dev for local function testing
-      run:  npm run netlify-dev && sleep 10 && cd tests/postman/ && newman run *
-
+      run:  npm run netlify-dev & sleep 10 && cd tests && node newman.js 
       env:
-        CI: true
-     
+        STRIPE_TEST_KEY: sk_test_7LEesZrYrgDtyxsc6Hy5i0lS00GVFEbmqb
+        ENDPOINT: http://localhost:5050
+
+    - name: Run tests against deployed preview
+      run:  cd tests && node newman.js 
+      env:
+        STRIPE_TEST_KEY: sk_test_7LEesZrYrgDtyxsc6Hy5i0lS00GVFEbmqb
+        ENDPOINT: https://deploy-preview-${{github.event.number}}--ambianic-serverless.netlify.app/.netlify/functions
+    
     - name: Generate OpenAPI specs
       run: |
         npm run generate-swagger && ./cleanup.sh
     
-    - name: Run the Openapi API tests
-      run: |
-        cd docs && sed -i 's/"version": "0.1"/"version": "1.0.0"/' package.json && npm install && npm test
-      env:
-        CI: true
+    - name: Create a static API documentation page from openapi specs
+      run: npm run generate-docs
+
+      # run this step only if its a push to the main branch
+    - name: Publish static API documentation to Github Pages
+      if: ${{ github.event_name == 'push' }}
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        personal_token: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}
+        publish_dir: ./github-pages
+
+    - name: Run the semantic-release
+      run: npx semantic-release
     
-    # code coverage report
     - name: Code Coverage Report
       uses: codecov/codecov-action@v1
       with:
-        file: ./docs/coverage/coverage-final.json
+        file: ./openapi-docs/coverage/coverage-final.json
         fail_ci_if_error: true 

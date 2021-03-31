@@ -34,100 +34,8 @@ export default class DefaultApi {
 
 
     /**
-     * Callback function to receive the result of the cancelSubscriptionPost operation.
-     * @callback module:api/DefaultApi~cancelSubscriptionPostCallback
-     * @param {String} error Error message, if any.
-     * @param {String} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Serverless function to cancel a user subscription. Requires `customer_id`.
-     * @param {module:api/DefaultApi~cancelSubscriptionPostCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link String}
-     */
-    cancelSubscriptionPost(opts, callback) {
-      opts = opts || {};
-      let postBody = null;
-
-      let pathParams = {
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = [];
-      let contentTypes = [];
-      let accepts = ['text/html; charset=utf-8'];
-      let returnType = 'String';
-      let basePaths = ['https://14fecb7f-38f9-43ce-ae90-9381932906cf.mock.pstmn.io'];
-      let basePath = basePaths[0]; // by default use the first one in "servers" defined in OpenAPI
-      if (typeof opts['_base_path_index'] !== 'undefined') {
-        if (opts['_base_path_index']  >= basePaths.length || opts['_base_path_index'] <  0) {
-          throw new Error("Invalid index " + opts['_base_path_index'] + " when selecting the host settings. Must be less than " + basePaths.length);
-        }
-        basePath = basePaths[opts['_base_path_index']];
-      }
-
-      return this.apiClient.callApi(
-        '/cancel-subscription', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, basePath, callback
-      );
-    }
-
-    /**
-     * Callback function to receive the result of the createStripeSubscriberPost operation.
-     * @callback module:api/DefaultApi~createStripeSubscriberPostCallback
-     * @param {String} error Error message, if any.
-     * @param {String} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Serverless function for creating a customer on stripe and subscribing them to an item.
-     * @param {module:api/DefaultApi~createStripeSubscriberPostCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link String}
-     */
-    createStripeSubscriberPost(opts, callback) {
-      opts = opts || {};
-      let postBody = null;
-
-      let pathParams = {
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = [];
-      let contentTypes = [];
-      let accepts = ['text/html; charset=utf-8'];
-      let returnType = 'String';
-      let basePaths = ['https://14fecb7f-38f9-43ce-ae90-9381932906cf.mock.pstmn.io'];
-      let basePath = basePaths[0]; // by default use the first one in "servers" defined in OpenAPI
-      if (typeof opts['_base_path_index'] !== 'undefined') {
-        if (opts['_base_path_index']  >= basePaths.length || opts['_base_path_index'] <  0) {
-          throw new Error("Invalid index " + opts['_base_path_index'] + " when selecting the host settings. Must be less than " + basePaths.length);
-        }
-        basePath = basePaths[opts['_base_path_index']];
-      }
-
-      return this.apiClient.callApi(
-        '/create-stripe-subscriber', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, basePath, callback
-      );
-    }
-
-    /**
-     * Callback function to receive the result of the netlifyFunctionsGetCustomersGet operation.
-     * @callback module:api/DefaultApi~netlifyFunctionsGetCustomersGetCallback
+     * Callback function to receive the result of the netlifyFunctionsCustomersGet operation.
+     * @callback module:api/DefaultApi~netlifyFunctionsCustomersGetCallback
      * @param {String} error Error message, if any.
      * @param data This operation does not return a value.
      * @param {String} response The complete HTTP response.
@@ -135,9 +43,9 @@ export default class DefaultApi {
 
     /**
      * Serverless function to fetch all customers from a stripe service account.
-     * @param {module:api/DefaultApi~netlifyFunctionsGetCustomersGetCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:api/DefaultApi~netlifyFunctionsCustomersGetCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    netlifyFunctionsGetCustomersGet(opts, callback) {
+    netlifyFunctionsCustomersGet(opts, callback) {
       opts = opts || {};
       let postBody = null;
 
@@ -164,7 +72,99 @@ export default class DefaultApi {
       }
 
       return this.apiClient.callApi(
-        '/.netlify/functions/getCustomers', 'GET',
+        '/.netlify/functions/customers', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, basePath, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the subscriberPost operation.
+     * @callback module:api/DefaultApi~subscriberPostCallback
+     * @param {String} error Error message, if any.
+     * @param {String} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Serverless function for creating a customer on stripe and subscribing them to an item.
+     * @param {module:api/DefaultApi~subscriberPostCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link String}
+     */
+    subscriberPost(opts, callback) {
+      opts = opts || {};
+      let postBody = null;
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = [];
+      let contentTypes = [];
+      let accepts = ['text/html; charset=utf-8'];
+      let returnType = 'String';
+      let basePaths = ['https://14fecb7f-38f9-43ce-ae90-9381932906cf.mock.pstmn.io'];
+      let basePath = basePaths[0]; // by default use the first one in "servers" defined in OpenAPI
+      if (typeof opts['_base_path_index'] !== 'undefined') {
+        if (opts['_base_path_index']  >= basePaths.length || opts['_base_path_index'] <  0) {
+          throw new Error("Invalid index " + opts['_base_path_index'] + " when selecting the host settings. Must be less than " + basePaths.length);
+        }
+        basePath = basePaths[opts['_base_path_index']];
+      }
+
+      return this.apiClient.callApi(
+        '/subscriber', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, basePath, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the subscriptionDelete operation.
+     * @callback module:api/DefaultApi~subscriptionDeleteCallback
+     * @param {String} error Error message, if any.
+     * @param {String} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Serverless function to cancel a user subscription. Requires `customer_id`.
+     * @param {module:api/DefaultApi~subscriptionDeleteCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link String}
+     */
+    subscriptionDelete(opts, callback) {
+      opts = opts || {};
+      let postBody = null;
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = [];
+      let contentTypes = [];
+      let accepts = ['text/html; charset=utf-8'];
+      let returnType = 'String';
+      let basePaths = ['https://14fecb7f-38f9-43ce-ae90-9381932906cf.mock.pstmn.io'];
+      let basePath = basePaths[0]; // by default use the first one in "servers" defined in OpenAPI
+      if (typeof opts['_base_path_index'] !== 'undefined') {
+        if (opts['_base_path_index']  >= basePaths.length || opts['_base_path_index'] <  0) {
+          throw new Error("Invalid index " + opts['_base_path_index'] + " when selecting the host settings. Must be less than " + basePaths.length);
+        }
+        basePath = basePaths[opts['_base_path_index']];
+      }
+
+      return this.apiClient.callApi(
+        '/subscription', 'DELETE',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, basePath, callback
       );

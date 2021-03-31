@@ -8,7 +8,7 @@ servers:
 - url: https://ambianic-functions.netlify.app
 - url: https://14fecb7f-38f9-43ce-ae90-9381932906cf.mock.pstmn.io
 paths:
-  /create-stripe-subscriber:
+  /subscriber:
     post:
       description: Serverless function for creating a customer on stripe and subscribing them to an item. 
       responses:
@@ -23,7 +23,7 @@ paths:
       - url: https://14fecb7f-38f9-43ce-ae90-9381932906cf.mock.pstmn.io
     servers:
     - url: https://14fecb7f-38f9-43ce-ae90-9381932906cf.mock.pstmn.io
-  /.netlify/functions/getCustomers:
+  /.netlify/functions/customers:
     get:
       description: Serverless function to fetch all customers from a stripe service account.
       responses:
@@ -33,8 +33,8 @@ paths:
       - url: https://ambianic-functions.netlify.app
     servers:
     - url: https://ambianic-functions.netlify.app
-  /cancel-subscription:
-    post:
+  /subscription:
+    delete:
       description: Serverless function to cancel a user subscription. Requires `customer_id`.
       responses:
         "200":

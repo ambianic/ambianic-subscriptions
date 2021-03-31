@@ -106,10 +106,10 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully. Returned data: ' + data);
+    console.log('API called successfully.');
   }
 };
-api.cancelSubscriptionPost(callback);
+api.netlifyFunctionsCustomersGet(callback);
 
 ```
 
@@ -119,9 +119,9 @@ All URIs are relative to *https://ambianic-functions.netlify.app*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AmbianicServerlessFunctionsApiDefinition.DefaultApi* | [**cancelSubscriptionPost**](docs/DefaultApi.md#cancelSubscriptionPost) | **POST** /cancel-subscription | 
-*AmbianicServerlessFunctionsApiDefinition.DefaultApi* | [**createStripeSubscriberPost**](docs/DefaultApi.md#createStripeSubscriberPost) | **POST** /create-stripe-subscriber | 
-*AmbianicServerlessFunctionsApiDefinition.DefaultApi* | [**netlifyFunctionsGetCustomersGet**](docs/DefaultApi.md#netlifyFunctionsGetCustomersGet) | **GET** /.netlify/functions/getCustomers | 
+*AmbianicServerlessFunctionsApiDefinition.DefaultApi* | [**netlifyFunctionsCustomersGet**](docs/DefaultApi.md#netlifyFunctionsCustomersGet) | **GET** /.netlify/functions/customers | 
+*AmbianicServerlessFunctionsApiDefinition.DefaultApi* | [**subscriberPost**](docs/DefaultApi.md#subscriberPost) | **POST** /subscriber | 
+*AmbianicServerlessFunctionsApiDefinition.DefaultApi* | [**subscriptionDelete**](docs/DefaultApi.md#subscriptionDelete) | **DELETE** /subscription | 
 
 
 ## Documentation for Models
