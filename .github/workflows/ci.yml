@@ -22,7 +22,7 @@ jobs:
       run: npm install --prefix tests/postman/
 
     - name: Start Netlify Dev for local function testing
-      run:  npm run netlify-dev && sleep 15 && cd tests/postman/ && newman run *
+      run:  npm run netlify-dev && sleep 10 && cd tests/postman/ && newman run *
 
       env:
         CI: true
