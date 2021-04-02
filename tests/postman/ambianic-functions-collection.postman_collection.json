@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "get-customers",
+			"name": "customers",
 			"event": [
 				{
 					"listen": "test",
@@ -43,24 +43,21 @@
 					}
 				],
 				"url": {
-					"raw": "https://ambianic-functions.netlify.app/.netlify/functions/getCustomers",
-					"protocol": "https",
+					"raw": "{{FUNCTION_ENDPOINT}}/.netlify/functions/customers",
 					"host": [
-						"ambianic-functions",
-						"netlify",
-						"app"
+						"{{FUNCTION_ENDPOINT}}"
 					],
 					"path": [
 						".netlify",
 						"functions",
-						"getCustomers"
+						"customers"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "create-subscription",
+			"name": "subscription",
 			"event": [
 				{
 					"listen": "test",
@@ -96,16 +93,16 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "https://14fecb7f-38f9-43ce-ae90-9381932906cf.mock.pstmn.io/create-stripe-subscriber",
+					"raw": "https://b92daa4d-8066-40f3-ab25-91e76ea43ab7.mock.pstmn.io/subscriber",
 					"protocol": "https",
 					"host": [
-						"14fecb7f-38f9-43ce-ae90-9381932906cf",
+						"b92daa4d-8066-40f3-ab25-91e76ea43ab7",
 						"mock",
 						"pstmn",
 						"io"
 					],
 					"path": [
-						"create-stripe-subscriber"
+						"subscriber"
 					]
 				},
 				"description": "Create a new stripe user and a subscription"
@@ -113,7 +110,7 @@
 			"response": []
 		},
 		{
-			"name": "cancel-subscription",
+			"name": "subscriptions",
 			"event": [
 				{
 					"listen": "test",
@@ -136,22 +133,21 @@
 				}
 			],
 			"request": {
-				"method": "POST",
+				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://14fecb7f-38f9-43ce-ae90-9381932906cf.mock.pstmn.io/cancel-subscription",
+					"raw": "https://b92daa4d-8066-40f3-ab25-91e76ea43ab7.mock.pstmn.io/subscription",
 					"protocol": "https",
 					"host": [
-						"14fecb7f-38f9-43ce-ae90-9381932906cf",
+						"b92daa4d-8066-40f3-ab25-91e76ea43ab7",
 						"mock",
 						"pstmn",
 						"io"
 					],
 					"path": [
-						"cancel-subscription"
+						"subscription"
 					]
-				},
-				"description": "Cancels a user subscription on stripe"
+				}
 			},
 			"response": []
 		}
