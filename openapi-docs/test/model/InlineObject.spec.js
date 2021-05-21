@@ -28,7 +28,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new AmbianicFunctionsCollection.DefaultApi();
+    instance = new AmbianicFunctionsCollection.InlineObject();
   });
 
   var getProperty = function(object, getter, property) {
@@ -47,47 +47,19 @@
       object[property] = value;
   }
 
-  describe('DefaultApi', function() {
-    describe('createSubscription', function() {
-      it('should call createSubscription successfully', function(done) {
-        //uncomment below and update the code to test createSubscription
-        //instance.createSubscription(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
+  describe('InlineObject', function() {
+    it('should create an instance of InlineObject', function() {
+      // uncomment below and update the code to test InlineObject
+      //var instane = new AmbianicFunctionsCollection.InlineObject();
+      //expect(instance).to.be.a(AmbianicFunctionsCollection.InlineObject);
     });
-    describe('deleteSubscription', function() {
-      it('should call deleteSubscription successfully', function(done) {
-        //uncomment below and update the code to test deleteSubscription
-        //instance.deleteSubscription(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
+
+    it('should have the property message (base name: "message")', function() {
+      // uncomment below and update the code to test the property message
+      //var instance = new AmbianicFunctionsCollection.InlineObject();
+      //expect(instance).to.be();
     });
-    describe('getSubscriptionData', function() {
-      it('should call getSubscriptionData successfully', function(done) {
-        //uncomment below and update the code to test getSubscriptionData
-        //instance.getSubscriptionData(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('sendNotification', function() {
-      it('should call sendNotification successfully', function(done) {
-        //uncomment below and update the code to test sendNotification
-        //instance.sendNotification(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
+
   });
 
 }));

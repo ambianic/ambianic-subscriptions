@@ -2,7 +2,7 @@ require("dotenv").config();
 const { ManagementClient } = require("auth0");
 const moment = require("moment");
 const { extendMoment } = require("moment-range");
-const stripe = require("stripe")(process.env.STRIPE_TEST_KEY);
+const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 
 const Moment = extendMoment(moment);

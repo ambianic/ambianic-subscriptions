@@ -28,7 +28,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new AmbianicFunctionsCollection.DefaultApi();
+    instance = new AmbianicFunctionsCollection.InlineResponse2002();
   });
 
   var getProperty = function(object, getter, property) {
@@ -47,47 +47,31 @@
       object[property] = value;
   }
 
-  describe('DefaultApi', function() {
-    describe('createSubscription', function() {
-      it('should call createSubscription successfully', function(done) {
-        //uncomment below and update the code to test createSubscription
-        //instance.createSubscription(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
+  describe('InlineResponse2002', function() {
+    it('should create an instance of InlineResponse2002', function() {
+      // uncomment below and update the code to test InlineResponse2002
+      //var instane = new AmbianicFunctionsCollection.InlineResponse2002();
+      //expect(instance).to.be.a(AmbianicFunctionsCollection.InlineResponse2002);
     });
-    describe('deleteSubscription', function() {
-      it('should call deleteSubscription successfully', function(done) {
-        //uncomment below and update the code to test deleteSubscription
-        //instance.deleteSubscription(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
+
+    it('should have the property id (base name: "id")', function() {
+      // uncomment below and update the code to test the property id
+      //var instance = new AmbianicFunctionsCollection.InlineResponse2002();
+      //expect(instance).to.be();
     });
-    describe('getSubscriptionData', function() {
-      it('should call getSubscriptionData successfully', function(done) {
-        //uncomment below and update the code to test getSubscriptionData
-        //instance.getSubscriptionData(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
+
+    it('should have the property _object (base name: "object")', function() {
+      // uncomment below and update the code to test the property _object
+      //var instance = new AmbianicFunctionsCollection.InlineResponse2002();
+      //expect(instance).to.be();
     });
-    describe('sendNotification', function() {
-      it('should call sendNotification successfully', function(done) {
-        //uncomment below and update the code to test sendNotification
-        //instance.sendNotification(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
+
+    it('should have the property deleted (base name: "deleted")', function() {
+      // uncomment below and update the code to test the property deleted
+      //var instance = new AmbianicFunctionsCollection.InlineResponse2002();
+      //expect(instance).to.be();
     });
+
   });
 
 }));

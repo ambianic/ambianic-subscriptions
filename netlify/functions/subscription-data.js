@@ -1,6 +1,6 @@
 require("dotenv").config();
 const { ManagementClient } = require("auth0");
-const stripe = require("stripe")(process.env.STRIPE_TEST_KEY);
+const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 const headers = {
   "Access-Control-Allow-Origin": "*",

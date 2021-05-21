@@ -1,5 +1,5 @@
 {
-  "name": "functions",
+  "name": "ambianic-cloud-api",
   "version": "0.0.0-development",
   "main": "index.js",
   "scripts": {
@@ -9,11 +9,13 @@
     "netlify-dev": "cd netlify && netlify dev --port=5050",
     "test:postman": "node newman.js",
     "semantic-release": "semantic-release",
-    "generate-docs": "bootprint openapi ./*.yaml docs"
+    "generate-docs": "bootprint openapi ./*.yaml docs",
+    "mock-server": "prism mock ./openapi-spec.yaml"
   },
   "license": "MIT",
   "dependencies": {
     "@openapitools/openapi-generator-cli": "^2.1.26",
+    "@stoplight/prism-cli": "^4.2.5",
     "atob": "^2.1.2",
     "auth0": "^2.34.2",
     "bootprint": "^4.0.4",
@@ -37,19 +39,21 @@
     "@semantic-release/github": "^7.2.0",
     "@semantic-release/npm": "^7.1.0",
     "@semantic-release/release-notes-generator": "^9.0.2",
-    "parcel-bundler": "^1.12.4",
+    "parcel-bundler": "^1.12.5",
     "semantic-release": "^17.4.2"
   },
   "repository": {
-    "ci": false,
     "type": "git",
     "url": "https://github.com/vickywane/ambianic-subscriptions.git"
   },
   "release": {
+    "ci": false,
+    "successComment": false,
     "branches": [
       "main",
+      "master",
       "docs/swagger",
-      "next"
+      "documentation"
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
@@ -65,8 +69,7 @@
         "assets": [
           "package.json",
           "package-lock.json",
-          "CHANGELOG.md",
-          ""
+          "CHANGELOG.md"
         ],
         "message": "chore(release): ${nextRelease.version} [skip ci]nn${nextRelease.notes}"
       }

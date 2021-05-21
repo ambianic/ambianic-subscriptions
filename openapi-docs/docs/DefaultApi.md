@@ -1,19 +1,74 @@
-# AmbianicFunctionsCollection.DefaultApi
+# AmbianicCloudApiCollection.DefaultApi
 
-All URIs are relative to *https://33743be6-3197-4dd4-8471-50b3640320c9.mock.pstmn.io*
+All URIs are relative to *http://127.0.0.1:4010*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteSubscription**](DefaultApi.md#deleteSubscription) | **DELETE** /mock-subscription | Delete an Ambianic&#39;s user subscription
-[**getSubscriptionData**](DefaultApi.md#getSubscriptionData) | **GET** /mock-subscription | Get a user&#39;s subscription data
-[**sendNotification**](DefaultApi.md#sendNotification) | **POST** /mock-notification | Send an event detection notification
-[**subscribeUser**](DefaultApi.md#subscribeUser) | **POST** /mock-subscribe | Subscribe Ambianic user to premium notification
+[**createSubscription**](DefaultApi.md#createSubscription) | **POST** /subscription | Subscribe a user to Ambianic&#39;s Premium Services
+[**deleteSubscription**](DefaultApi.md#deleteSubscription) | **DELETE** /subscription | Delete an Ambianic&#39;s user subscription
+[**getSubscriptionData**](DefaultApi.md#getSubscriptionData) | **GET** /subscription | Get a user&#39;s subscription data
+[**sendNotification**](DefaultApi.md#sendNotification) | **POST** /notification | Send an event detection notification
 
+
+
+## createSubscription
+
+> InlineResponse2001 createSubscription(accessControlAllowOrigin, email, cvc, _number, expYear, expMonth)
+
+Subscribe a user to Ambianic&#39;s Premium Services
+
+A POST request to create a new customer under Ambianic and also subscribe user to Ambianic Premium Service
+
+### Example
+
+```javascript
+import AmbianicCloudApiCollection from 'ambianic_cloud_api_collection';
+
+let apiInstance = new AmbianicCloudApiCollection.DefaultApi();
+let accessControlAllowOrigin = *; // String | 
+let email = "email_example"; // String | 
+let cvc = "cvc_example"; // String | 
+let _number = "_number_example"; // String | 
+let expYear = "expYear_example"; // String | 
+let expMonth = "expMonth_example"; // String | 
+apiInstance.createSubscription(accessControlAllowOrigin, email, cvc, _number, expYear, expMonth, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accessControlAllowOrigin** | **String**|  | 
+ **email** | **String**|  | 
+ **cvc** | **String**|  | 
+ **_number** | **String**|  | 
+ **expYear** | **String**|  | 
+ **expMonth** | **String**|  | 
+
+### Return type
+
+[**InlineResponse2001**](InlineResponse2001.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data, application/json
+- **Accept**: application/json
 
 
 ## deleteSubscription
 
-> deleteSubscription(subscriptionId, accessControlAllowOrigin, accessControlAllowHeaders, contentType)
+> InlineResponse2002 deleteSubscription(subscriptionId, accessControlAllowOrigin, accessControlAllowHeaders, contentType)
 
 Delete an Ambianic&#39;s user subscription
 
@@ -22,9 +77,9 @@ Delete a user&#39;s subscription on Stripe, either active or expired.
 ### Example
 
 ```javascript
-import AmbianicFunctionsCollection from 'ambianic_functions_collection';
+import AmbianicCloudApiCollection from 'ambianic_cloud_api_collection';
 
-let apiInstance = new AmbianicFunctionsCollection.DefaultApi();
+let apiInstance = new AmbianicCloudApiCollection.DefaultApi();
 let subscriptionId = SUBSCRIBER-ID; // String | ID for the user's subscription to be deleted
 let accessControlAllowOrigin = *; // String | 
 let accessControlAllowHeaders = Content-Type; // String | 
@@ -33,7 +88,7 @@ apiInstance.deleteSubscription(subscriptionId, accessControlAllowOrigin, accessC
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 });
 ```
@@ -50,7 +105,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**InlineResponse2002**](InlineResponse2002.md)
 
 ### Authorization
 
@@ -59,12 +114,12 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 
 ## getSubscriptionData
 
-> getSubscriptionData(userStripeId, userSubscriptionId, accessControlAllowOrigin, accessControlAllowHeaders, contentType)
+> InlineResponse200 getSubscriptionData(userStripeId, userSubscriptionId, accessControlAllowOrigin, accessControlAllowHeaders, contentType)
 
 Get a user&#39;s subscription data
 
@@ -73,9 +128,9 @@ Retrieve a subscribed customer&#39;s data from Stripe
 ### Example
 
 ```javascript
-import AmbianicFunctionsCollection from 'ambianic_functions_collection';
+import AmbianicCloudApiCollection from 'ambianic_cloud_api_collection';
 
-let apiInstance = new AmbianicFunctionsCollection.DefaultApi();
+let apiInstance = new AmbianicCloudApiCollection.DefaultApi();
 let userStripeId = STRIPE_CUSTOMER_ID; // String | Id for the customer created on Stripe
 let userSubscriptionId = CREATED_SUBSCRIPTION_ID; // String | Id for the user's subscription with Ambianic
 let accessControlAllowOrigin = *; // String | 
@@ -85,7 +140,7 @@ apiInstance.getSubscriptionData(userStripeId, userSubscriptionId, accessControlA
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 });
 ```
@@ -103,7 +158,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -112,12 +167,12 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 
 ## sendNotification
 
-> sendNotification(userId, notification, accessControlAllowOrigin)
+> InlineResponse2003 sendNotification(userId, notification, accessControlAllowOrigin, opts)
 
 Send an event detection notification
 
@@ -126,17 +181,20 @@ An endpoint to send notifications about detected objects to a premium ambianic s
 ### Example
 
 ```javascript
-import AmbianicFunctionsCollection from 'ambianic_functions_collection';
+import AmbianicCloudApiCollection from 'ambianic_cloud_api_collection';
 
-let apiInstance = new AmbianicFunctionsCollection.DefaultApi();
-let userId = AUTHO_USER_ID ; // String | Authenticated user ID gotten from auth0
-let notification = NOTIFICATION_DATA; // String | Notification object containing detected event details from running ambianic edge device
+let apiInstance = new AmbianicCloudApiCollection.DefaultApi();
+let userId = AUTHO_USER_ID ; // String | ID of the user that owns the Edge Device triggering the notification
+let notification = {dateTime: "monday"}; // String | Notification object containing detected event details from running ambianic edge device
 let accessControlAllowOrigin = *; // String | 
-apiInstance.sendNotification(userId, notification, accessControlAllowOrigin, (error, data, response) => {
+let opts = {
+  'inlineObject': new AmbianicCloudApiCollection.InlineObject() // InlineObject | 
+};
+apiInstance.sendNotification(userId, notification, accessControlAllowOrigin, opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 });
 ```
@@ -146,13 +204,14 @@ apiInstance.sendNotification(userId, notification, accessControlAllowOrigin, (er
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String**| Authenticated user ID gotten from auth0 | 
+ **userId** | **String**| ID of the user that owns the Edge Device triggering the notification | 
  **notification** | **String**| Notification object containing detected event details from running ambianic edge device | 
  **accessControlAllowOrigin** | **String**|  | 
+ **inlineObject** | [**InlineObject**](InlineObject.md)|  | [optional] 
 
 ### Return type
 
-null (empty response body)
+[**InlineResponse2003**](InlineResponse2003.md)
 
 ### Authorization
 
@@ -160,65 +219,6 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: Not defined
-
-
-## subscribeUser
-
-> subscribeUser(_number, cvc, expMonth, expYear, email, accessControlAllowOrigin, accessControlAllowHeaders, contentType)
-
-Subscribe Ambianic user to premium notification
-
-Create a new stripe user and a subscription
-
-### Example
-
-```javascript
-import AmbianicFunctionsCollection from 'ambianic_functions_collection';
-
-let apiInstance = new AmbianicFunctionsCollection.DefaultApi();
-let _number = CREDIT_CARD_NUMBER; // String | 16 digit Number on the credit card supplied
-let cvc = CREDIT_CARD_CVC; // String | Cvc number behind credit card
-let expMonth = CREDIT_CARD_EXPIRY_MONTH; // String | 2 digit expected credit card expiry month. 
-let expYear = CREDIT_CARD_EXPIRY_YEAR; // String | 4 digit expected credit card expiry year. 
-let email = SUBSCRIBER_EMAIL; // String | Subscriber's email address
-let accessControlAllowOrigin = *; // String | 
-let accessControlAllowHeaders = Content-Type; // String | 
-let contentType = application/json; // String | 
-apiInstance.subscribeUser(_number, cvc, expMonth, expYear, email, accessControlAllowOrigin, accessControlAllowHeaders, contentType, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-});
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_number** | **String**| 16 digit Number on the credit card supplied | 
- **cvc** | **String**| Cvc number behind credit card | 
- **expMonth** | **String**| 2 digit expected credit card expiry month.  | 
- **expYear** | **String**| 4 digit expected credit card expiry year.  | 
- **email** | **String**| Subscriber&#39;s email address | 
- **accessControlAllowOrigin** | **String**|  | 
- **accessControlAllowHeaders** | **String**|  | 
- **contentType** | **String**|  | 
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: application/x-www-form-urlencoded
-- **Accept**: Not defined
+- **Content-Type**: application/json
+- **Accept**: application/json
 

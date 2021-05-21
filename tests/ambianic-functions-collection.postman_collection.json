@@ -1,100 +1,11 @@
 {
 	"info": {
 		"_postman_id": "a7b6cde1-7435-479a-bd1a-20ab61f9ae08",
-		"name": "ambianic-functions-collection",
-		"description": "A postman collection documenting the Netlify cloud functions created for use within Ambianic-PWA",
+		"name": "ambianic-cloud-api-collection",
+		"description": "This collection contains a specification for all API endpoints within Ambianic's Cloud API.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
-		{
-			"name": "subscribe",
-			"event": 			{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const jsonResponse = pm.response.json()",
-							"",
-							"pm.test(\"Returns a response object\", () => {",
-							"   pm.expect(jsonResponse).to.be.an(\"object\");",
-							"})",
-							"",
-							"pm.test(\"Returns needed fields in response object\", () => {",
-							"  const expectedData = {",
-							"        message: \"NOTIFICATION SUBSCRIPTION CREATED\",",
-							"        userStripeId: \"cus12312312\",",
-							"        userSubscriptionId: \"sub121212123\"",
-							"  };",
-							"",
-							"  pm.expect(jsonResponse).to.deep.include(expectedData);",
-							"}) "
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Access-Control-Allow-Origin",
-						"value": "*",
-						"type": "text"
-					},
-					{
-						"key": "Access-Control-Allow-Headers",
-						"value": "Content-Type",
-						"type": "text"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": []
-				},
-				"url": {
-					"raw": "{{url}}/subscribe?number=CREDIT_CARD_NUMBER&cvc=CREDIT_CARD_CVC&exp_month=CREDIT_CARD_EXPIRY_MONTH&exp_year=CREDIT_CARD_EXPIRY_YEAR&email=SUBSCRIBER_EMAIL",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"subscribe"
-					],
-					"query": [
-						{
-							"key": "number",
-							"value": "CREDIT_CARD_NUMBER",
-							"description": "16 digit Number on the credit card supplied"
-						},
-						{
-							"key": "cvc",
-							"value": "CREDIT_CARD_CVC",
-							"description": "Cvc number behind credit card"
-						},
-						{
-							"key": "exp_month",
-							"value": "CREDIT_CARD_EXPIRY_MONTH",
-							"description": "2 digit expected credit card expiry month. "
-						},
-						{
-							"key": "exp_year",
-							"value": "CREDIT_CARD_EXPIRY_YEAR",
-							"description": "4 digit expected credit card expiry year. "
-						},
-						{
-							"key": "email",
-							"value": "SUBSCRIBER_EMAIL",
-							"description": "Subscriber's email address"
-						}
-					]
-				},
-				"description": "Create a new stripe user and a subscription"
-			},
-			"response": []
-		},
 		{
 			"name": "subscription-data",
 			"event": [
@@ -136,9 +47,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{url}}/subscription?userStripeId=STRIPE_CUSTOMER_ID&userSubscriptionId=CREATED_SUBSCRIPTION_ID",
+					"raw": "{{FUNCTION_URL}}/subscription?userStripeId=STRIPE_CUSTOMER_ID&userSubscriptionId=CREATED_SUBSCRIPTION_ID",
 					"host": [
-						"{{url}}"
+						"{{FUNCTION_URL}}"
 					],
 					"path": [
 						"subscription"
@@ -202,9 +113,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{url}}/subscription?subscriptionId=SUBSCRIBER-ID",
+					"raw": "{{FUNCTION_URL}}/subscription?subscriptionId=SUBSCRIBER-ID",
 					"host": [
-						"{{url}}"
+						"{{FUNCTION_URL}}"
 					],
 					"path": [
 						"subscription"
@@ -233,7 +144,7 @@
 							"pm.test(\"It recieves event detection and sends email to edge-device owner\", () => {",
 							"   pm.expect(jsonResponse).to.be.an(\"object\");",
 							"",
-							"   pm.expect(jsonResponse.message).to.eql(\"Notificiation sent\");",
+							"   pm.expect(jsonResponse.message).to.eql(\"Notification sent\");",
 							"})"
 						],
 						"type": "text/javascript"
@@ -250,9 +161,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{url}}/notification?userId=AUTHO_USER_ID &notification={dateTime: \"monday\"}",
+					"raw": "{{FUNCTION_URL}}/notification?userId=AUTHO_USER_ID &notification={\"dateTime\": \"monday\"}",
 					"host": [
-						"{{url}}"
+						"{{FUNCTION_URL}}"
 					],
 					"path": [
 						"notification"
@@ -260,16 +171,96 @@
 					"query": [
 						{
 							"key": "userId",
-							"value": "AUTHO_USER_ID "
+							"value": "AUTHO_USER_ID ",
+							"description": "ID of the user that owns the Edge Device triggering the notification"
 						},
 						{
 							"key": "notification",
-							"value": "{dateTime: \"monday\"}",
+							"value": "{\"dateTime\": \"monday\"}",
 							"description": "Notification object containing detected event details from running ambianic edge device"
 						}
 					]
 				},
 				"description": "An endpoint to send notifications about detected objects to a premium ambianic subscriber from a running edge device, delivered from the Cloud API."
+			},
+			"response": []
+		},
+		{
+			"name": "subscription",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonResponse = pm.response.json()",
+							"",
+							"pm.test(\"It returns the payload of the newly created customer\", () => {",
+							"   pm.expect(jsonResponse).to.be.an(\"object\");",
+							"",
+							"   pm.expect(jsonResponse.message).to.eql(\"NOTIFICATION SUBSCRIPTION CREATED\");",
+							"   pm.expect(jsonResponse.userStripeId).to.be.an(\"string\");",
+							"   pm.expect(jsonResponse.userSubscriptionId).to.be.an(\"string\");",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Control-Allow-Origin",
+						"value": "*",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test@mail.co",
+							"type": "text"
+						},
+						{
+							"key": "cvc",
+							"value": "123",
+							"type": "text"
+						},
+						{
+							"key": "number",
+							"value": "1234567890",
+							"type": "text"
+						},
+						{
+							"key": "exp_year",
+							"value": "2024",
+							"type": "text"
+						},
+						{
+							"key": "exp_month",
+							"value": "11",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{FUNCTION_URL}}/subscription?",
+					"host": [
+						"{{FUNCTION_URL}}"
+					],
+					"path": [
+						"subscription"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				},
+				"description": "A POST request to create a new customer with Stripe under Ambianic and also subscribe user to Ambianic Premium Service"
 			},
 			"response": []
 		}
@@ -294,6 +285,16 @@
 					"}) "
 				]
 			}
+		}
+	],
+	"variable": [
+		{
+			"key": "https://33743be6-3197-4dd4-8471-50b3640320c9.mock.pstmn.io",
+			"value": "url"
+		},
+		{
+			"key": "FUNCTION_URL",
+			"value": "http://127.0.0.1:4010"
 		}
 	]
 }
