@@ -1,0 +1,7 @@
+.babelrc
+.gitignore
+README.md
+docs/DefaultApi.md
+src/ApiClient.js
+src/api/DefaultApi.js
+src/index.js

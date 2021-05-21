@@ -1,0 +1,249 @@
+---
+openapi: 3.0.0
+servers:
+  - url: https://33743be6-3197-4dd4-8471-50b3640320c9.mock.pstmn.io
+    description: ''
+    variables: {}
+info:
+  version: 4b8f433d-5891-4ae3-bb49-ca6942a9b08d
+  title: ambianic-functions-collection
+  description: A postman collection documenting the Netlify cloud functions created
+    for use within Ambianic-PWA
+  termsOfService: ''
+  contact: {}
+  license:
+    name: ''
+paths:
+  "/mock-subscribe":
+    post:
+      summary: Subscribe Ambianic user to premium notification 
+      description: Create a new stripe user and a subscription
+      operationId: subscribeUser
+      parameters:
+        - "$ref": "#/components/parameters/number"
+        - "$ref": "#/components/parameters/cvc"
+        - "$ref": "#/components/parameters/exp_month"
+        - "$ref": "#/components/parameters/exp_year"
+        - "$ref": "#/components/parameters/email"
+        - "$ref": "#/components/parameters/Access-Control-Allow-Origin"
+        - "$ref": "#/components/parameters/Access-Control-Allow-Headers"
+        - "$ref": "#/components/parameters/Content-Type"
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        description: Create a new stripe user and a subscription
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties: {}
+            example: []
+  "/mock-subscription":
+    get:
+      summary: Get a user's subscription data
+      description: Retrieve a subscribed customer's data from Stripe
+      operationId: get-subscription-data
+      parameters:
+        - "$ref": "#/components/parameters/userStripeId"
+        - "$ref": "#/components/parameters/userSubscriptionId"
+        - name: Access-Control-Allow-Origin
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: "*"
+        - name: Access-Control-Allow-Headers
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: Content-Type
+        - name: Content-Type
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: application/json
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    delete:
+      summary: Delete an Ambianic's user subscription
+      description: Delete a user's subscription on Stripe, either active or expired.
+      operationId: delete-subscription
+      parameters:
+        - "$ref": "#/components/parameters/subscriptionId"
+        - name: Access-Control-Allow-Origin
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: "*"
+        - name: Access-Control-Allow-Headers
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: Content-Type
+        - name: Content-Type
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: application/json
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  "/mock-notification":
+    post:
+      summary: Send an event detection notification
+      description: An endpoint to send notifications about detected objects to a premium
+        ambianic subscriber from a running edge device, delivered from the Cloud API.
+      operationId: send-notification
+      parameters:
+        - "$ref": "#/components/parameters/userId"
+        - "$ref": "#/components/parameters/notification"
+        - name: Access-Control-Allow-Origin
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: "*"
+      responses:
+        '200':
+          description: ''
+          headers: {}
+components:
+  parameters:
+    number:
+      name: number
+      in: query
+      required: true
+      style: form
+      schema:
+        type: string
+        example: CREDIT_CARD_NUMBER
+      description: 16 digit Number on the credit card supplied
+    cvc:
+      name: cvc
+      in: query
+      required: true
+      style: form
+      schema:
+        type: string
+        example: CREDIT_CARD_CVC
+      description: Cvc number behind credit card
+    exp_month:
+      name: exp_month
+      in: query
+      required: true
+      style: form
+      schema:
+        type: string
+        example: CREDIT_CARD_EXPIRY_MONTH
+      description: '2 digit expected credit card expiry month. '
+    exp_year:
+      name: exp_year
+      in: query
+      required: true
+      style: form
+      schema:
+        type: string
+        example: CREDIT_CARD_EXPIRY_YEAR
+      description: '4 digit expected credit card expiry year. '
+    email:
+      name: email
+      in: query
+      required: true
+      style: form
+      schema:
+        type: string
+        example: SUBSCRIBER_EMAIL
+      description: Subscriber's email address
+    Access-Control-Allow-Origin:
+      name: Access-Control-Allow-Origin
+      in: header
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: "*"
+    Access-Control-Allow-Headers:
+      name: Access-Control-Allow-Headers
+      in: header
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: Content-Type
+    Content-Type:
+      name: Content-Type
+      in: header
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: application/json
+    userStripeId:
+      name: userStripeId
+      in: query
+      required: true
+      style: form
+      schema:
+        type: string
+        example: STRIPE_CUSTOMER_ID
+      description: Id for the customer created on Stripe
+    userSubscriptionId:
+      name: userSubscriptionId
+      in: query
+      required: true
+      style: form
+      schema:
+        type: string
+        example: CREATED_SUBSCRIPTION_ID
+      description: Id for the user's subscription with Ambianic
+    subscriptionId:
+      name: subscriptionId
+      in: query
+      required: true
+      style: form
+      schema:
+        type: string
+        example: SUBSCRIBER-ID
+      description: ID for the user's subscription to be deleted
+    userId:
+      name: userId
+      in: query
+      required: true
+      style: form
+      schema:
+        type: string
+        example: 'AUTHO_USER_ID '
+      description: Authenticated user ID gotten from auth0
+    notification:
+      name: notification
+      in: query
+      required: true
+      style: form
+      schema:
+        type: string
+        example: NOTIFICATION_DATA
+      description: Notification object containing detected event details from running
+        ambianic edge device
+security: []
+tags: []
+externalDocs:
+  url: ''
+  description: ''

@@ -1,46 +1,69 @@
 name: Ambianic Functions API CI Test 
 
-on: [pull_request]
+on:
+  # Trigger the workflow on push or pull request against main branch
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Install application dependencies
-      run: npm install
-
     - name: Install Node JS ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    
-    - name: Install Newman dependency
-      run: npm install --prefix tests/postman/
 
-    - name: Start Netlify Dev for local function testing
-      run:  npm run netlify-dev & sleep 10 && cd tests && node newman.js 
-      env:
-        STRIPE_TEST_KEY: sk_test_7LEesZrYrgDtyxsc6Hy5i0lS00GVFEbmqb
-        ENDPOINT: http://localhost:5050
+    - uses: actions/checkout@v1
+    - name: Install application dependencies
+      run: npm install
 
-    - name: Run tests against deployed preview
-      run:  cd tests && node newman.js 
-      env:
-        STRIPE_TEST_KEY: sk_test_7LEesZrYrgDtyxsc6Hy5i0lS00GVFEbmqb
-        ENDPOINT: https://deploy-preview-${{github.event.number}}--ambianic-serverless.netlify.app/.netlify/functions
-    
     - name: Generate OpenAPI specs
       run: |
-        npm run generate-swagger && ./cleanup.sh
-    
+        npm run generate-swagger && ./scripts.sh cleanup
+
+#    - name: Install Newman dependency
+#      run: npm install --prefix tests/
+
+    - name: Local function testing
+      run:  npm run netlify-dev & sleep 10 && npm run test:postman
+      env:
+        STRIPE_TEST_KEY: ${{ secrets.STRIPE_TEST_KEY }}
+        ENDPOINT: http://localhost:5050
+
+    # - name: Run tests against deployed preview
+    #   run:   ./scripts.sh wait-for-url https://deploy-preview-2--ambianic-serverless.netlify.app && cd ./tests && node newman.js 
+    #   env:
+    #     STRIPE_TEST_KEY: ${{ secrets.STRIPE_TEST_KEY }}
+    #     ENDPOINT: https://deploy-preview-${{github.event.number}}--ambianic-serverless.netlify.app/.netlify/functions
+
+    - name: Wait for successful preview deployment
+      uses: jakepartusch/wait-for-netlify-action@v1
+      id: get-netlify-url
+      with:
+        site_name: "ambianic-serverless"
+        max_timeout: 60
+     
+    - name: Run tests against deployed preview
+      run:  npm run test:postman
+      env:
+        STRIPE_TEST_KEY: ${{ secrets.STRIPE_TEST_KEY }}
+        ENDPOINT: ${{ steps.get-netlify-url.outputs.url }}
+
+    - name: Run OpenAPI Tests and generate Code Coverage
+      run: cd openapi-docs/ && npm install && npm run test
+
     - name: Create a static API documentation page from openapi specs
       run: npm run generate-docs
 
       # run this step only if its a push to the main branch
     - name: Publish static API documentation to Github Pages
-      if: ${{ github.ref == 'refs/heads/main' }}
+      if: ${{ github.event_name == 'push' }}
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -49,9 +72,15 @@ jobs:
 
     - name: Run the semantic-release
       run: npx semantic-release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     
     - name: Code Coverage Report
       uses: codecov/codecov-action@v1
       with:
-        file: ./docs/coverage/coverage-final.json
-        fail_ci_if_error: true 
+        file: ./openapi-docs/coverage/coverage-final.json
+        fail_ci_if_error: true
+
+    - name: Checkout generated files
+      uses: actions/checkout@v1

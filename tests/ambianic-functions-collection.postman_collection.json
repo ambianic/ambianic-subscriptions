@@ -1,0 +1,317 @@
+{
+	"info": {
+		"_postman_id": "4b8f433d-5891-4ae3-bb49-ca6942a9b08d",
+		"name": "ambianic-functions-collection",
+		"description": "A postman collection documenting the Netlify cloud functions created for use within Ambianic-PWA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "subscribe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonResponse = pm.response.json()",
+							"",
+							"pm.test(\"Returns a response object\", () => {",
+							"   pm.expect(jsonResponse).to.be.an(\"object\");",
+							"})",
+							"",
+							"pm.test(\"Returns needed fields in response object\", () => {",
+							"  const expectedData = {",
+							"        message: \"NOTIFICATION SUBSCRIPTION CREATED\",",
+							"        userStripeId: \"cus12312312\",",
+							"        userSubscriptionId: \"sub121212123\"",
+							"  };",
+							"",
+							"  pm.expect(jsonResponse).to.deep.include(expectedData);",
+							"}) "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Control-Allow-Origin",
+						"value": "*",
+						"type": "text"
+					},
+					{
+						"key": "Access-Control-Allow-Headers",
+						"value": "Content-Type",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "https://33743be6-3197-4dd4-8471-50b3640320c9.mock.pstmn.io/mock-subscribe?number=CREDIT_CARD_NUMBER&cvc=CREDIT_CARD_CVC&exp_month=CREDIT_CARD_EXPIRY_MONTH&exp_year=CREDIT_CARD_EXPIRY_YEAR&email=SUBSCRIBER_EMAIL",
+					"protocol": "https",
+					"host": [
+						"33743be6-3197-4dd4-8471-50b3640320c9",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"mock-subscribe"
+					],
+					"query": [
+						{
+							"key": "number",
+							"value": "CREDIT_CARD_NUMBER",
+							"description": "16 digit Number on the credit card supplied"
+						},
+						{
+							"key": "cvc",
+							"value": "CREDIT_CARD_CVC",
+							"description": "Cvc number behind credit card"
+						},
+						{
+							"key": "exp_month",
+							"value": "CREDIT_CARD_EXPIRY_MONTH",
+							"description": "2 digit expected credit card expiry month. "
+						},
+						{
+							"key": "exp_year",
+							"value": "CREDIT_CARD_EXPIRY_YEAR",
+							"description": "4 digit expected credit card expiry year. "
+						},
+						{
+							"key": "email",
+							"value": "SUBSCRIBER_EMAIL",
+							"description": "Subscriber's email address"
+						}
+					]
+				},
+				"description": "Create a new stripe user and a subscription"
+			},
+			"response": []
+		},
+		{
+			"name": "subscription-data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonResponse = pm.response.json()",
+							"",
+							"pm.test(\"Returns OK\", () => {",
+							"    pm.response.to.have.status(200)",
+							"}) ",
+							"",
+							"pm.test(\"Returns an array containing customers\", () => {",
+							"   pm.expect(jsonResponse).to.be.an(\"object\");",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Access-Control-Allow-Origin",
+						"value": "*",
+						"type": "text"
+					},
+					{
+						"key": "Access-Control-Allow-Headers",
+						"value": "Content-Type",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://33743be6-3197-4dd4-8471-50b3640320c9.mock.pstmn.io/mock-subscription?userStripeId=STRIPE_CUSTOMER_ID&userSubscriptionId=CREATED_SUBSCRIPTION_ID",
+					"protocol": "https",
+					"host": [
+						"33743be6-3197-4dd4-8471-50b3640320c9",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"mock-subscription"
+					],
+					"query": [
+						{
+							"key": "userStripeId",
+							"value": "STRIPE_CUSTOMER_ID",
+							"description": "Id for the customer created on Stripe"
+						},
+						{
+							"key": "userSubscriptionId",
+							"value": "CREATED_SUBSCRIPTION_ID",
+							"description": "Id for the user's subscription with Ambianic"
+						}
+					]
+				},
+				"description": "Retrieve a subscribed customer's data from Stripe"
+			},
+			"response": []
+		},
+		{
+			"name": "subscription",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonResponse = pm.response.json()",
+							"",
+							"pm.test(\"Returns a deleted customer subscription response object\", () => {",
+							"   pm.expect(jsonResponse).to.be.an(\"object\");",
+							"",
+							"   pm.expect(jsonResponse.object).to.be.eql(\"subscription\");",
+							"   pm.expect(jsonResponse.status).to.be.eql(\"canceled\");",
+							"",
+							"    pm.expect(jsonResponse.id).to.be.an(\"string\");",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Access-Control-Allow-Origin",
+						"value": "*",
+						"type": "text"
+					},
+					{
+						"key": "Access-Control-Allow-Headers",
+						"value": "Content-Type",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://33743be6-3197-4dd4-8471-50b3640320c9.mock.pstmn.io/mock-subscription?subscriptionId=SUBSCRIBER-ID",
+					"protocol": "https",
+					"host": [
+						"33743be6-3197-4dd4-8471-50b3640320c9",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"mock-subscription"
+					],
+					"query": [
+						{
+							"key": "subscriptionId",
+							"value": "SUBSCRIBER-ID",
+							"description": "ID for the user's subscription to be deleted"
+						}
+					]
+				},
+				"description": "Delete a user's subscription on Stripe, either active or expired."
+			},
+			"response": []
+		},
+		{
+			"name": "notification",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonResponse = pm.response.json()",
+							"",
+							"pm.test(\"It recieves event detection and sends email to edge-device owner\", () => {",
+							"   pm.expect(jsonResponse).to.be.an(\"object\");",
+							"",
+							"   pm.expect(jsonResponse.message).to.eql(\"Notificiation sent\");",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Control-Allow-Origin",
+						"value": "*",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://33743be6-3197-4dd4-8471-50b3640320c9.mock.pstmn.io/mock-notification?userId=AUTHO_USER_ID &notification={dateTime: \"monday\"}",
+					"protocol": "https",
+					"host": [
+						"33743be6-3197-4dd4-8471-50b3640320c9",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"mock-notification"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "AUTHO_USER_ID ",
+							"description": "Authenticated user ID gotten from auth0"
+						},
+						{
+							"key": "notification",
+							"value": "{dateTime: \"monday\"}",
+							"description": "Notification object containing detected event details from running ambianic edge device"
+						}
+					]
+				},
+				"description": "An endpoint to send notifications about detected objects to a premium ambianic subscriber from a running edge device, delivered from the Cloud API."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Returns OK\", () => {",
+					"    pm.response.to.have.status(200)",
+					"}) "
+				]
+			}
+		}
+	]
+}
