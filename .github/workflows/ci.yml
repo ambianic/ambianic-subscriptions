@@ -24,11 +24,7 @@ jobs:
       run: npm install
 
     - name: Generate OpenAPI specs
-      run: |
-        npm run generate-swagger && ./scripts.sh cleanup
-
-#    - name: Install Newman dependency
-#      run: npm install --prefix tests/
+      run: npm run generate-swagger && ./scripts.sh cleanup
 
     - name: Local function testing
       run:  npm run netlify-dev & sleep 10 && npm run test:postman
@@ -68,7 +64,7 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         personal_token: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}
-        publish_dir: ./github-pages
+        publish_dir: ./docs
 
     - name: Run the semantic-release
       run: npx semantic-release

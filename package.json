@@ -45,10 +45,12 @@
     "url": "https://github.com/vickywane/ambianic-subscriptions.git"
   },
   "release": {
+    "ci": false,
     "branches": [
       "main",
+      "master",
       "docs/swagger",
-      "next"
+      "documentation"
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",

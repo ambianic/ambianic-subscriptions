@@ -4,10 +4,10 @@ All URIs are relative to *https://33743be6-3197-4dd4-8471-50b3640320c9.mock.pstm
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteSubscription**](DefaultApi.md#deleteSubscription) | **DELETE** /mock-subscription | Delete an Ambianic&#39;s user subscription
-[**getSubscriptionData**](DefaultApi.md#getSubscriptionData) | **GET** /mock-subscription | Get a user&#39;s subscription data
-[**sendNotification**](DefaultApi.md#sendNotification) | **POST** /mock-notification | Send an event detection notification
-[**subscribeUser**](DefaultApi.md#subscribeUser) | **POST** /mock-subscribe | Subscribe Ambianic user to premium notification
+[**deleteSubscription**](DefaultApi.md#deleteSubscription) | **DELETE** /subscription | Delete an Ambianic&#39;s user subscription
+[**getSubscriptionData**](DefaultApi.md#getSubscriptionData) | **GET** /subscription | Get a user&#39;s subscription data
+[**sendNotification**](DefaultApi.md#sendNotification) | **POST** /notification | Send an event detection notification
+[**subscribeUser**](DefaultApi.md#subscribeUser) | **POST** /subscribe | Subscribe Ambianic user to premium notification
 
 
 
@@ -129,8 +129,8 @@ An endpoint to send notifications about detected objects to a premium ambianic s
 import AmbianicFunctionsCollection from 'ambianic_functions_collection';
 
 let apiInstance = new AmbianicFunctionsCollection.DefaultApi();
-let userId = AUTHO_USER_ID ; // String | Authenticated user ID gotten from auth0
-let notification = NOTIFICATION_DATA; // String | Notification object containing detected event details from running ambianic edge device
+let userId = AUTHO_USER_ID ; // String | 
+let notification = {dateTime: "monday"}; // String | Notification object containing detected event details from running ambianic edge device
 let accessControlAllowOrigin = *; // String | 
 apiInstance.sendNotification(userId, notification, accessControlAllowOrigin, (error, data, response) => {
   if (error) {
@@ -146,7 +146,7 @@ apiInstance.sendNotification(userId, notification, accessControlAllowOrigin, (er
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String**| Authenticated user ID gotten from auth0 | 
+ **userId** | **String**|  | 
  **notification** | **String**| Notification object containing detected event details from running ambianic edge device | 
  **accessControlAllowOrigin** | **String**|  | 
 

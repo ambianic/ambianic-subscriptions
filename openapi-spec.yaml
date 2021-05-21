@@ -5,7 +5,7 @@ servers:
     description: ''
     variables: {}
 info:
-  version: 4b8f433d-5891-4ae3-bb49-ca6942a9b08d
+  version: a7b6cde1-7435-479a-bd1a-20ab61f9ae08
   title: ambianic-functions-collection
   description: A postman collection documenting the Netlify cloud functions created
     for use within Ambianic-PWA
@@ -14,9 +14,9 @@ info:
   license:
     name: ''
 paths:
-  "/mock-subscribe":
+  "/subscribe":
     post:
-      summary: Subscribe Ambianic user to premium notification 
+      summary: Subscribe Ambianic user to premium notification
       description: Create a new stripe user and a subscription
       operationId: subscribeUser
       parameters:
@@ -41,7 +41,7 @@ paths:
               type: object
               properties: {}
             example: []
-  "/mock-subscription":
+  "/subscription":
     get:
       summary: Get a user's subscription data
       description: Retrieve a subscribed customer's data from Stripe
@@ -105,7 +105,7 @@ paths:
         '200':
           description: ''
           headers: {}
-  "/mock-notification":
+  "/notification":
     post:
       summary: Send an event detection notification
       description: An endpoint to send notifications about detected objects to a premium
@@ -231,7 +231,6 @@ components:
       schema:
         type: string
         example: 'AUTHO_USER_ID '
-      description: Authenticated user ID gotten from auth0
     notification:
       name: notification
       in: query
@@ -239,7 +238,7 @@ components:
       style: form
       schema:
         type: string
-        example: NOTIFICATION_DATA
+        example: '{dateTime: "monday"}'
       description: Notification object containing detected event details from running
         ambianic edge device
 security: []
