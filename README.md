@@ -11,7 +11,7 @@ The image below shows the architecture of these serverless functions in connecti
 
 The serverless functions within this project are managed using [netlify-dev](https://www.netlify.com/products/dev/). Start the functions emulator from the `netlify` directory using `yarn netlify-dev` to listen for requests to any of created functions on port `5050`.
 
-Credentials within this project are managed using environment variables and [GitHub Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets). To run the functions here locally using the `netlify dev` command, create a `.env` file in the root directory with the following values;
+All credentials within this project are managed using environment variables and [GitHub Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets). To run the functions here locally using the `netlify dev` command, create a `.env` file in the root directory with the following values;
 
 ```
 STRIPE_TEST_KEY=STRIPE_KEY
