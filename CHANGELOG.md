@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/vickywane/ambianic-subscriptions/compare/v1.0.0...v1.1.0) (2021-05-22)
+
+
+### Features
+
+* fixed ci broken steps ([#10](https://github.com/vickywane/ambianic-subscriptions/issues/10)) ([f4b4f10](https://github.com/vickywane/ambianic-subscriptions/commit/f4b4f108763669940079dc334dfed67cf62ca90c)), closes [#6](https://github.com/vickywane/ambianic-subscriptions/issues/6)
+
 # 1.0.0 (2021-05-22)
 
 
