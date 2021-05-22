@@ -91,7 +91,6 @@ class ApiClient {
          * Allow user to add superagent plugins
          */
         this.plugins = null;
-
     }
 
     /**
