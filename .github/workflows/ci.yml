@@ -39,6 +39,7 @@ jobs:
     #     ENDPOINT: https://deploy-preview-${{github.event.number}}--ambianic-serverless.netlify.app/.netlify/functions
 
     - name: Wait for successful preview deployment
+      if: ${{ github.event_name == 'pull_request' }}
       uses: jakepartusch/wait-for-netlify-action@v1
       id: get-netlify-url
       with:
@@ -46,6 +47,7 @@ jobs:
         max_timeout: 60
      
     - name: Run tests against deployed preview
+      if: ${{ github.event_name == 'pull_request' }}
       run:  npm run test:postman
       env:
         STRIPE_TEST_KEY: ${{ secrets.STRIPE_TEST_KEY }}
@@ -69,7 +71,7 @@ jobs:
     - name: Run the semantic-release
       run: npx semantic-release
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     
     - name: Code Coverage Report
