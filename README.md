@@ -7,7 +7,7 @@
 The image below shows the architecture of these serverless functions in connection with the Ambianic [PWA](https://github.com/ambianic/ambianic-ui/).
 ![serverless-functions-architecture](./assets/serverless-architecture.png)
 
-## Running Locally
+## Local Development / Usage
 
 The serverless functions within this project are managed using [netlify-dev](https://www.netlify.com/products/dev/). Start the functions emulator from the `netlify` directory using `yarn netlify-dev` to listen for requests to any of created functions on port `5050`.
 

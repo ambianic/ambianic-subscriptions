@@ -48,9 +48,8 @@
     "ci": false,
     "branches": [
       "main",
-      "master",
       "docs/swagger",
-      "documentation"
+      "development"
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
