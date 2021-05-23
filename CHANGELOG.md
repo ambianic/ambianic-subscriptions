@@ -1,3 +1,11 @@
+# [1.3.0](https://github.com/vickywane/ambianic-subscriptions/compare/v1.2.0...v1.3.0) (2021-05-23)
+
+
+### Features
+
+* corrected ci steps ([#12](https://github.com/vickywane/ambianic-subscriptions/issues/12)) ([8dedc75](https://github.com/vickywane/ambianic-subscriptions/commit/8dedc758437f3a097f11b3e88876061adedb0ddf))
+* corrected ci steps ([#13](https://github.com/vickywane/ambianic-subscriptions/issues/13)) ([f3f1293](https://github.com/vickywane/ambianic-subscriptions/commit/f3f129391e01d22feb9a8b1f4bf928e65f1d77f3))
+
 # [1.2.0](https://github.com/vickywane/ambianic-subscriptions/compare/v1.1.0...v1.2.0) (2021-05-22)
 
 
