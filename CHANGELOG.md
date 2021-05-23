@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/vickywane/ambianic-subscriptions/compare/v1.3.0...v1.4.0) (2021-05-23)
+
+
+### Features
+
+* corrected package name ([#14](https://github.com/vickywane/ambianic-subscriptions/issues/14)) ([ff6d3c9](https://github.com/vickywane/ambianic-subscriptions/commit/ff6d3c94ef21334c70608d2ab2bbb4ea72f83463))
+
 # [1.3.0](https://github.com/vickywane/ambianic-subscriptions/compare/v1.2.0...v1.3.0) (2021-05-23)
 
 
