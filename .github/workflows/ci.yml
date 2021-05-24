@@ -32,12 +32,6 @@ jobs:
         STRIPE_TEST_KEY: ${{ secrets.STRIPE_TEST_KEY }}
         ENDPOINT: http://localhost:5050
 
-    # - name: Run tests against deployed preview
-    #   run:   ./scripts.sh wait-for-url https://deploy-preview-2--ambianic-serverless.netlify.app && cd ./tests && node newman.js 
-    #   env:
-    #     STRIPE_TEST_KEY: ${{ secrets.STRIPE_TEST_KEY }}
-    #     ENDPOINT: https://deploy-preview-${{github.event.number}}--ambianic-serverless.netlify.app/.netlify/functions
-
     - name: Wait for successful preview deployment
       if: ${{ github.event_name == 'pull_request' }}
       uses: jakepartusch/wait-for-netlify-action@v1
