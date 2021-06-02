@@ -1,0 +1,7 @@
+# OpenAPI Generator Ignore
+
+
+.travis.yml
+git_push.sh
+mocha.opts
+package.json

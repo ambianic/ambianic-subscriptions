@@ -1,17 +1,78 @@
 {
-  "name": "functions",
-  "version": "1.0.0",
+  "name": "ambianic-cloud-api",
+  "version": "0.0.0-development",
   "main": "index.js",
   "scripts": {
     "build": "parcel build index.html",
     "dev": "parcel index.html",
+    "generate-swagger": "openapi-generator-cli generate -i ./*.yaml -g javascript -o openapi-docs",
+    "netlify-dev": "cd netlify && netlify dev --port=5050",
+    "test:postman": "node newman.js",
+    "semantic-release": "semantic-release",
+    "generate-docs": "bootprint openapi ./*.yaml docs",
+    "mock-server": "prism mock ./openapi-spec.yaml"
   },
   "license": "MIT",
   "dependencies": {
+    "@openapitools/openapi-generator-cli": "^2.1.26",
+    "@stoplight/prism-cli": "^4.2.5",
+    "atob": "^2.1.2",
+    "auth0": "^2.34.2",
+    "bootprint": "^4.0.4",
+    "bootprint-openapi": "^4.0.4",
+    "dotenv": "^9.0.2",
+    "jimp": "^0.16.1",
+    "mailgun-js": "^0.22.0",
+    "moment": "^2.29.1",
+    "moment-range": "^4.0.2",
+    "netlify-cli": "^3.13.10",
     "newman": "^5.2.2",
+    "nodemailer": "^6.5.0",
+    "nyc": "^15.1.0",
+    "querystring": "^0.2.1",
     "stripe": "^8.135.0"
   },
   "devDependencies": {
-    "parcel-bundler": "^1.12.4"
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/github": "^7.2.0",
+    "@semantic-release/npm": "^7.1.0",
+    "@semantic-release/release-notes-generator": "^9.0.2",
+    "parcel-bundler": "^1.12.5",
+    "semantic-release": "^17.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vickywane/ambianic-subscriptions.git"
+  },
+  "release": {
+    "ci": false,
+    "successComment": false,
+    "branches": [
+      "main",
+      "master",
+      "docs/swagger",
+      "documentation"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/github"
+    ],
+    "prepare": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      {
+        "path": "@semantic-release/git",
+        "assets": [
+          "package.json",
+          "package-lock.json",
+          "CHANGELOG.md"
+        ],
+        "message": "chore(release): ${nextRelease.version} [skip ci]nn${nextRelease.notes}"
+      }
+    ]
   }
 }

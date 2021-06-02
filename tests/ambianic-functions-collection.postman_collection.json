@@ -1,0 +1,300 @@
+{
+	"info": {
+		"_postman_id": "a7b6cde1-7435-479a-bd1a-20ab61f9ae08",
+		"name": "ambianic-cloud-api-collection",
+		"description": "This collection contains a specification for all API endpoints within Ambianic's Cloud API.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "subscription-data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonResponse = pm.response.json()",
+							"",
+							"pm.test(\"Returns OK\", () => {",
+							"    pm.response.to.have.status(200)",
+							"}) ",
+							"",
+							"pm.test(\"Returns an array containing customers\", () => {",
+							"   pm.expect(jsonResponse).to.be.an(\"object\");",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Access-Control-Allow-Origin",
+						"value": "*",
+						"type": "text"
+					},
+					{
+						"key": "Access-Control-Allow-Headers",
+						"value": "Content-Type",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{FUNCTION_URL}}/subscription?userStripeId=STRIPE_CUSTOMER_ID&userSubscriptionId=CREATED_SUBSCRIPTION_ID",
+					"host": [
+						"{{FUNCTION_URL}}"
+					],
+					"path": [
+						"subscription"
+					],
+					"query": [
+						{
+							"key": "userStripeId",
+							"value": "STRIPE_CUSTOMER_ID",
+							"description": "Id for the customer created on Stripe"
+						},
+						{
+							"key": "userSubscriptionId",
+							"value": "CREATED_SUBSCRIPTION_ID",
+							"description": "Id for the user's subscription with Ambianic"
+						}
+					]
+				},
+				"description": "Retrieve a subscribed customer's data from Stripe"
+			},
+			"response": []
+		},
+		{
+			"name": "subscription",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonResponse = pm.response.json()",
+							"",
+							"pm.test(\"Returns a deleted customer subscription response object\", () => {",
+							"   pm.expect(jsonResponse).to.be.an(\"object\");",
+							"",
+							"   pm.expect(jsonResponse.object).to.be.eql(\"subscription\");",
+							"   pm.expect(jsonResponse.status).to.be.eql(\"canceled\");",
+							"",
+							"    pm.expect(jsonResponse.id).to.be.an(\"string\");",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Access-Control-Allow-Origin",
+						"value": "*",
+						"type": "text"
+					},
+					{
+						"key": "Access-Control-Allow-Headers",
+						"value": "Content-Type",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{FUNCTION_URL}}/subscription?subscriptionId=SUBSCRIBER-ID",
+					"host": [
+						"{{FUNCTION_URL}}"
+					],
+					"path": [
+						"subscription"
+					],
+					"query": [
+						{
+							"key": "subscriptionId",
+							"value": "SUBSCRIBER-ID",
+							"description": "ID for the user's subscription to be deleted"
+						}
+					]
+				},
+				"description": "Delete a user's subscription on Stripe, either active or expired."
+			},
+			"response": []
+		},
+		{
+			"name": "notification",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonResponse = pm.response.json()",
+							"",
+							"pm.test(\"It recieves event detection and sends email to edge-device owner\", () => {",
+							"   pm.expect(jsonResponse).to.be.an(\"object\");",
+							"",
+							"   pm.expect(jsonResponse.message).to.eql(\"Notification sent\");",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Control-Allow-Origin",
+						"value": "*",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{FUNCTION_URL}}/notification?userId=AUTHO_USER_ID &notification={\"dateTime\": \"monday\"}",
+					"host": [
+						"{{FUNCTION_URL}}"
+					],
+					"path": [
+						"notification"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "AUTHO_USER_ID ",
+							"description": "ID of the user that owns the Edge Device triggering the notification"
+						},
+						{
+							"key": "notification",
+							"value": "{\"dateTime\": \"monday\"}",
+							"description": "Notification object containing detected event details from running ambianic edge device"
+						}
+					]
+				},
+				"description": "An endpoint to send notifications about detected objects to a premium ambianic subscriber from a running edge device, delivered from the Cloud API."
+			},
+			"response": []
+		},
+		{
+			"name": "subscription",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonResponse = pm.response.json()",
+							"",
+							"pm.test(\"It returns the payload of the newly created customer\", () => {",
+							"   pm.expect(jsonResponse).to.be.an(\"object\");",
+							"",
+							"   pm.expect(jsonResponse.message).to.eql(\"NOTIFICATION SUBSCRIPTION CREATED\");",
+							"   pm.expect(jsonResponse.userStripeId).to.be.an(\"string\");",
+							"   pm.expect(jsonResponse.userSubscriptionId).to.be.an(\"string\");",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Control-Allow-Origin",
+						"value": "*",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test@mail.co",
+							"type": "text"
+						},
+						{
+							"key": "cvc",
+							"value": "123",
+							"type": "text"
+						},
+						{
+							"key": "number",
+							"value": "1234567890",
+							"type": "text"
+						},
+						{
+							"key": "exp_year",
+							"value": "2024",
+							"type": "text"
+						},
+						{
+							"key": "exp_month",
+							"value": "11",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{FUNCTION_URL}}/subscription?",
+					"host": [
+						"{{FUNCTION_URL}}"
+					],
+					"path": [
+						"subscription"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				},
+				"description": "A POST request to create a new customer with Stripe under Ambianic and also subscribe user to Ambianic Premium Service"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Returns OK\", () => {",
+					"    pm.response.to.have.status(200)",
+					"}) "
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "https://33743be6-3197-4dd4-8471-50b3640320c9.mock.pstmn.io",
+			"value": "url"
+		},
+		{
+			"key": "FUNCTION_URL",
+			"value": "http://127.0.0.1:4010"
+		}
+	]
+}

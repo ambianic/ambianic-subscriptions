@@ -1,0 +1,523 @@
+openapi: 3.0.0
+servers:
+  - url: 'http://127.0.0.1:4010'
+    description: ''
+    variables: {}
+info:
+  version: 1x
+  title: ambianic-cloud-api-collection
+  description: This collection contains a specification for all API endpoints within Ambianic's Cloud API.
+  termsOfService: ''
+  contact: {}
+  license:
+    name: ''
+paths:
+  /subscription:
+    get:
+      summary: Get a user's subscription data
+      description: Retrieve a subscribed customer's data from Stripe
+      operationId: get-subscription-data
+      parameters:
+        - $ref: '#/components/parameters/userStripeId'
+        - $ref: '#/components/parameters/userSubscriptionId'
+        - name: Access-Control-Allow-Origin
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: '*'
+        - name: Access-Control-Allow-Headers
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: Content-Type
+        - name: Content-Type
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: application/json
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: string
+                    minLength: 1
+                  object:
+                    type: string
+                    minLength: 1
+                  application_fee_percent: {}
+                  billing_cycle_anchor:
+                    type: number
+                  billing_thresholds: {}
+                  cancel_at: {}
+                  cancel_at_period_end:
+                    type: boolean
+                  canceled_at:
+                    type: number
+                  collection_method:
+                    type: string
+                    minLength: 1
+                  created:
+                    type: number
+                  current_period_end:
+                    type: number
+                  current_period_start:
+                    type: number
+                  customer:
+                    type: string
+                    minLength: 1
+                  days_until_due: {}
+                  default_payment_method: {}
+                  default_source: {}
+                  discount: {}
+                  ended_at:
+                    type: number
+                  latest_invoice: {}
+                  livemode:
+                    type: boolean
+                  metadata:
+                    type: object
+                    properties: {}
+                  next_pending_invoice_item_invoice: {}
+                  pause_collection: {}
+                  pending_invoice_item_interval: {}
+                  pending_setup_intent: {}
+                  pending_update: {}
+                  schedule: {}
+                  start_date:
+                    type: number
+                  status:
+                    type: string
+                    minLength: 1
+                  transfer_data: {}
+                  trial_end:
+                    type: number
+                  trial_start:
+                    type: number
+                required:
+                  - id
+                  - object
+                  - billing_cycle_anchor
+                  - cancel_at_period_end
+                  - canceled_at
+                  - collection_method
+                  - created
+                  - current_period_end
+                  - current_period_start
+                  - customer
+                  - default_tax_rates
+                  - ended_at
+                  - livemode
+                  - metadata
+                  - start_date
+                  - status
+                  - trial_end
+                  - trial_start
+                x-examples:
+                  example-1:
+                    id: sub_36VrPHS2vVxJMq
+                    object: subscription
+                    application_fee_percent: null
+                    billing_cycle_anchor: 1387222772
+                    billing_thresholds: null
+                    cancel_at: null
+                    cancel_at_period_end: false
+                    canceled_at: 1445989053
+                    collection_method: charge_automatically
+                    created: 1386790772
+                    current_period_end: 1447702772
+                    current_period_start: 1444678772
+                    customer: cus_36Akh5CetFGg9T
+                    days_until_due: null
+                    default_payment_method: null
+                    default_source: null
+                    default_tax_rates: []
+                    discount: null
+                    ended_at: 1445989053
+                    latest_invoice: null
+                    livemode: false
+                    metadata: {}
+                    next_pending_invoice_item_invoice: null
+                    pause_collection: null
+                    pending_invoice_item_interval: null
+                    pending_setup_intent: null
+                    pending_update: null
+                    schedule: null
+                    start_date: 1386790772
+                    status: canceled
+                    transfer_data: null
+                    trial_end: 1387222772
+                    trial_start: 1386790772
+              examples:
+                customer-object:
+                  value:
+                    id: sub_36VrPHS2vVxJMq
+                    object: subscription
+                    application_fee_percent: null
+                    billing_cycle_anchor: 1387222772
+                    billing_thresholds: null
+                    cancel_at: null
+                    cancel_at_period_end: false
+                    canceled_at: 1445989053
+                    collection_method: charge_automatically
+                    created: 1386790772
+                    current_period_end: 1447702772
+                    current_period_start: 1444678772
+                    customer: cus_36Akh5CetFGg9T
+                    days_until_due: null
+                    default_payment_method: null
+                    default_source: null
+                    default_tax_rates: []
+                    discount: null
+                    ended_at: 1445989053
+                    latest_invoice: null
+                    livemode: false
+                    metadata: {}
+                    next_pending_invoice_item_invoice: null
+                    pause_collection: null
+                    pending_invoice_item_interval: null
+                    pending_setup_intent: null
+                    pending_update: null
+                    schedule: null
+                    start_date: 1386790772
+                    status: canceled
+                    transfer_data: null
+                    trial_end: 1387222772
+                    trial_start: 1386790772
+    delete:
+      summary: Delete an Ambianic's user subscription
+      description: 'Delete a user''s subscription on Stripe, either active or expired.'
+      operationId: delete-subscription
+      parameters:
+        - $ref: '#/components/parameters/subscriptionId'
+        - name: Access-Control-Allow-Origin
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: '*'
+        - name: Access-Control-Allow-Headers
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: Content-Type
+        - name: Content-Type
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: application/json
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                description: Deleted subscription response
+                type: object
+                properties:
+                  id:
+                    type: string
+                    minLength: 1
+                  object:
+                    type: string
+                    minLength: 1
+                  deleted:
+                    type: boolean
+              examples:
+                deleted-sub-example:
+                  value:
+                    id: cus_JG7VryYKvr7Bvb
+                    object: subscription
+                    deleted: true
+                    status: canceled
+    post:
+      summary: Subscribe a user to Ambianic's Premium Services
+      description: A POST request to create a new customer under Ambianic and also subscribe user to Ambianic Premium Service
+      operationId: create-subscription
+      parameters:
+        - name: Access-Control-Allow-Origin
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: '*'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                    minLength: 1
+                  userStripeId:
+                    type: string
+                    minLength: 1
+                  userSubscriptionId:
+                    type: string
+                    minLength: 1
+                required:
+                  - message
+                  - userStripeId
+                  - userSubscriptionId
+                x-examples:
+                  example-1:
+                    message: NOTIFICATION SUBSCRIPTION CREATED
+                    userStripeId: cus|1234567890
+                    userSubscriptionId: sub|12345678
+              examples:
+                subscription-response:
+                  value:
+                    message: NOTIFICATION SUBSCRIPTION CREATED
+                    userStripeId: cus|1234567890
+                    userSubscriptionId: sub|12345678
+      requestBody:
+        description: A POST request to create a new customer with Stripe under Ambianic and also subscribe user to Ambianic Premium Service
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - email
+                - cvc
+                - number
+                - exp_year
+                - exp_month
+              properties:
+                email:
+                  type: string
+                  example: test@mail.co
+                cvc:
+                  type: string
+                  example: '123'
+                number:
+                  type: string
+                  example: '1234567890'
+                exp_year:
+                  type: string
+                  example: '2024'
+                exp_month:
+                  type: string
+                  example: '11'
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                message:
+                  type: string
+                  minLength: 1
+                userStripeId:
+                  type: string
+                  minLength: 1
+                userSubscriptionId:
+                  type: string
+                  minLength: 1
+              required:
+                - message
+                - userStripeId
+                - userSubscriptionId
+              x-examples:
+                example-1:
+                  message: Cat event detected
+                  userStripeId: auth|12345678901
+                  userSubscriptionId: sub|12345678901
+            examples:
+              subscription-request:
+                value:
+                  message: string
+                  userStripeId: string
+                  userSubscriptionId: string
+  /notification:
+    post:
+      summary: Send an event detection notification
+      description: 'An endpoint to send notifications about detected objects to a premium ambianic subscriber from a running edge device, delivered from the Cloud API.'
+      operationId: send-notification
+      parameters:
+        - $ref: '#/components/parameters/userId'
+        - $ref: '#/components/parameters/notification'
+        - name: Access-Control-Allow-Origin
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: '*'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - message
+                x-examples:
+                  example-1:
+                    message: Notification sent
+              examples:
+                notification-reponse:
+                  summary: A successful notification response
+                  value:
+                    message: Notification sent
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                message:
+                  type: string
+                  minLength: 1
+              required:
+                - message
+              x-examples:
+                example-1:
+                  message: Notification Sent
+            examples: {}
+components:
+  parameters:
+    number:
+      name: number
+      in: query
+      required: true
+      style: form
+      schema:
+        type: string
+        example: CREDIT_CARD_NUMBER
+      description: 16 digit Number on the credit card supplied
+    cvc:
+      name: cvc
+      in: query
+      required: true
+      style: form
+      schema:
+        type: string
+        example: CREDIT_CARD_CVC
+      description: Cvc number behind credit card
+    exp_month:
+      name: exp_month
+      in: query
+      required: true
+      style: form
+      schema:
+        type: string
+        example: CREDIT_CARD_EXPIRY_MONTH
+      description: '2 digit expected credit card expiry month. '
+    exp_year:
+      name: exp_year
+      in: query
+      required: true
+      style: form
+      schema:
+        type: string
+        example: CREDIT_CARD_EXPIRY_YEAR
+      description: '4 digit expected credit card expiry year. '
+    email:
+      name: email
+      in: query
+      required: true
+      style: form
+      schema:
+        type: string
+        example: SUBSCRIBER_EMAIL
+      description: Subscriber's email address
+    Access-Control-Allow-Origin:
+      name: Access-Control-Allow-Origin
+      in: header
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: '*'
+    Access-Control-Allow-Headers:
+      name: Access-Control-Allow-Headers
+      in: header
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: Content-Type
+    Content-Type:
+      name: Content-Type
+      in: header
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: application/json
+    userStripeId:
+      name: userStripeId
+      in: query
+      required: true
+      style: form
+      schema:
+        type: string
+        example: STRIPE_CUSTOMER_ID
+      description: Id for the customer created on Stripe
+    userSubscriptionId:
+      name: userSubscriptionId
+      in: query
+      required: true
+      style: form
+      schema:
+        type: string
+        example: CREATED_SUBSCRIPTION_ID
+      description: Id for the user's subscription with Ambianic
+    subscriptionId:
+      name: subscriptionId
+      in: query
+      required: true
+      style: form
+      schema:
+        type: string
+        example: SUBSCRIBER-ID
+      description: ID for the user's subscription to be deleted
+    userId:
+      name: userId
+      in: query
+      required: true
+      style: form
+      schema:
+        type: string
+        example: 'AUTHO_USER_ID '
+      description: ID of the user that owns the Edge Device triggering the notification
+    notification:
+      name: notification
+      in: query
+      required: true
+      style: form
+      schema:
+        type: string
+        example: '{dateTime: "monday"}'
+      description: Notification object containing detected event details from running ambianic edge device
+security: []
+tags: []
+externalDocs:
+  url: ''
+  description: ''

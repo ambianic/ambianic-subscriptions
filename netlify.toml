@@ -1,8 +1,12 @@
+[dev]
+ autoLaunch = false
+
 [build]
-command = "npm build"
+command = "npm run build"
 functions = "netlify/functions"
 
 [[headers]]
 for = "/*"
 [headers.values]
 Access-Control-Allow-Origin = "*"
+Content-Type = "application/json"
