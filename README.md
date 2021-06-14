@@ -17,8 +17,8 @@ Credentials within this project are managed using environment variables and [Git
 # Access key from Stripe to access your Stripe resources
 STRIPE_KEY=STRIPE_KEY
 
-# The product ID which users are subscribed to.
-EMAIL_PRODUCT_ID=STRIPE_KEY
+# The ID of the price product object used in billing subscribers.
+EMAIL_PRODUCT_PRICE_ID=STRIPE_KEY
 ```
 
 ## CI / CD Pipeline

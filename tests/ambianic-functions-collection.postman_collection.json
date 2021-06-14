@@ -263,6 +263,62 @@
 				"description": "A POST request to create a new customer with Stripe under Ambianic and also subscribe user to Ambianic Premium Service"
 			},
 			"response": []
+		},
+		{
+			"name": "notification",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonResponse = pm.response.json()",
+							"",
+							"const productResponse = jsonResponse.product",
+							"",
+							"pm.test(\"It returns the payload of the email notification product\", () => {",
+							"   pm.expect(jsonResponse).to.be.an(\"object\");",
+							"   pm.expect(productResponse).to.be.an(\"object\");",
+							"})",
+							"",
+							"pm.test(\"It returns an active email notification product\", () => {",
+							"    pm.expect(productResponse.active).to.be.an(\"boolean\")",
+							"    pm.expect(productResponse.active).to.be.true",
+							"",
+							"    pm.expect(productResponse.id).to.be.an(\"string\");",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Access-Control-Allow-Origin",
+						"value": "*",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{FUNCTION_URL}}/notification",
+					"host": [
+						"{{FUNCTION_URL}}"
+					],
+					"path": [
+						"notification"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "*",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Retrieve the notification product details from Stripe"
+			},
+			"response": []
 		}
 	],
 	"event": [

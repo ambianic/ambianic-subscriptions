@@ -14,10 +14,12 @@
 
 import ApiClient from "../ApiClient";
 import InlineObject from '../model/InlineObject';
+import InlineObject1 from '../model/InlineObject1';
 import InlineResponse200 from '../model/InlineResponse200';
 import InlineResponse2001 from '../model/InlineResponse2001';
 import InlineResponse2002 from '../model/InlineResponse2002';
 import InlineResponse2003 from '../model/InlineResponse2003';
+import InlineResponse2004 from '../model/InlineResponse2004';
 
 /**
 * Default service.
@@ -173,6 +175,52 @@ export default class DefaultApi {
     }
 
     /**
+     * Callback function to receive the result of the getNotificationProduct operation.
+     * @callback module:api/DefaultApi~getNotificationProductCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/InlineResponse2003} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Retrieve notification product
+     * An endpoint to retrieve details about the Ambianic notifications product.
+     * @param {String} accessControlAllowOrigin 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/InlineObject} opts.inlineObject 
+     * @param {module:api/DefaultApi~getNotificationProductCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/InlineResponse2003}
+     */
+    getNotificationProduct(accessControlAllowOrigin, opts, callback) {
+      opts = opts || {};
+      let postBody = opts['inlineObject'];
+      // verify the required parameter 'accessControlAllowOrigin' is set
+      if (accessControlAllowOrigin === undefined || accessControlAllowOrigin === null) {
+        throw new Error("Missing the required parameter 'accessControlAllowOrigin' when calling getNotificationProduct");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+        'Access-Control-Allow-Origin': accessControlAllowOrigin
+      };
+      let formParams = {
+      };
+
+      let authNames = [];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = InlineResponse2003;
+      return this.apiClient.callApi(
+        '/notification', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the getSubscriptionData operation.
      * @callback module:api/DefaultApi~getSubscriptionDataCallback
      * @param {String} error Error message, if any.
@@ -243,7 +291,7 @@ export default class DefaultApi {
      * Callback function to receive the result of the sendNotification operation.
      * @callback module:api/DefaultApi~sendNotificationCallback
      * @param {String} error Error message, if any.
-     * @param {module:model/InlineResponse2003} data The data returned by the service call.
+     * @param {module:model/InlineResponse2004} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -254,13 +302,13 @@ export default class DefaultApi {
      * @param {String} notification Notification object containing detected event details from running ambianic edge device
      * @param {String} accessControlAllowOrigin 
      * @param {Object} opts Optional parameters
-     * @param {module:model/InlineObject} opts.inlineObject 
+     * @param {module:model/InlineObject1} opts.inlineObject1 
      * @param {module:api/DefaultApi~sendNotificationCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/InlineResponse2003}
+     * data is of type: {@link module:model/InlineResponse2004}
      */
     sendNotification(userId, notification, accessControlAllowOrigin, opts, callback) {
       opts = opts || {};
-      let postBody = opts['inlineObject'];
+      let postBody = opts['inlineObject1'];
       // verify the required parameter 'userId' is set
       if (userId === undefined || userId === null) {
         throw new Error("Missing the required parameter 'userId' when calling sendNotification");
@@ -289,7 +337,7 @@ export default class DefaultApi {
       let authNames = [];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
-      let returnType = InlineResponse2003;
+      let returnType = InlineResponse2004;
       return this.apiClient.callApi(
         '/notification', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,

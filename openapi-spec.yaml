@@ -400,6 +400,143 @@ paths:
                 example-1:
                   message: Notification Sent
             examples: {}
+    get:
+      summary: Retrieve notification product
+      description: An endpoint to retrieve details about the Ambianic notifications product.
+      operationId: get-notification-product
+      parameters:
+        - name: Access-Control-Allow-Origin
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: '*'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  product:
+                    type: object
+                    properties:
+                      active:
+                        type: boolean
+                      attributes:
+                        type: array
+                        items:
+                          required: []
+                          properties: {}
+                      created:
+                        type: number
+                      description:
+                        type: string
+                        minLength: 1
+                      id:
+                        type: string
+                        minLength: 1
+                      images:
+                        type: array
+                        items:
+                          required: []
+                          properties: {}
+                      livemode:
+                        type: boolean
+                      metadata:
+                        type: object
+                        properties: {}
+                        required: []
+                      name:
+                        type: string
+                        minLength: 1
+                      object:
+                        type: string
+                        minLength: 1
+                      package_dimensions: {}
+                      shippable: {}
+                      statement_descriptor: {}
+                      type:
+                        type: string
+                        minLength: 1
+                      unit_label: {}
+                      updated:
+                        type: number
+                      url: {}
+                    required:
+                      - active
+                      - attributes
+                      - created
+                      - description
+                      - id
+                      - images
+                      - livemode
+                      - metadata
+                      - name
+                      - object
+                      - type
+                      - updated
+                required:
+                  - product
+                x-examples:
+                  example-1:
+                    product:
+                      active: true
+                      attributes: []
+                      created: 1614166650
+                      description: Ambianic Email Notification product
+                      id: prod_123456789
+                      images: []
+                      livemode: false
+                      metadata: {}
+                      name: Email_subs
+                      object: product
+                      package_dimensions: null
+                      shippable: null
+                      statement_descriptor: null
+                      type: service
+                      unit_label: null
+                      updated: 1615738932
+                      url: null
+              examples:
+                notification-product-reponse:
+                  summary: A successful notification response
+                  value:
+                    product:
+                      active: true
+                      attributes: []
+                      created: 1614166650
+                      description: Ambianic email notification product
+                      id: prod_123456789
+                      images: []
+                      livemode: false
+                      metadata: {}
+                      name: Email_subs
+                      object: product
+                      package_dimensions: null
+                      shippable: null
+                      statement_descriptor: null
+                      type: service
+                      uni_label: null
+                      updated: 1615738932
+                      url: null
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                message:
+                  type: string
+                  minLength: 1
+              x-examples:
+                example-1:
+                  message: Notification Sent
+            examples: {}
 components:
   parameters:
     number:

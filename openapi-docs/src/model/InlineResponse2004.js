@@ -14,18 +14,19 @@
 import ApiClient from '../ApiClient';
 
 /**
- * The InlineObject model module.
- * @module model/InlineObject
+ * The InlineResponse2004 model module.
+ * @module model/InlineResponse2004
  * @version 1x
  */
-class InlineObject {
+class InlineResponse2004 {
     /**
-     * Constructs a new <code>InlineObject</code>.
-     * @alias module:model/InlineObject
+     * Constructs a new <code>InlineResponse2004</code>.
+     * @alias module:model/InlineResponse2004
+     * @param message {String} 
      */
-    constructor() { 
+    constructor(message) { 
         
-        InlineObject.initialize(this);
+        InlineResponse2004.initialize(this, message);
     }
 
     /**
@@ -33,19 +34,20 @@ class InlineObject {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj) { 
+    static initialize(obj, message) { 
+        obj['message'] = message;
     }
 
     /**
-     * Constructs a <code>InlineObject</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>InlineResponse2004</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/InlineObject} obj Optional instance to populate.
-     * @return {module:model/InlineObject} The populated <code>InlineObject</code> instance.
+     * @param {module:model/InlineResponse2004} obj Optional instance to populate.
+     * @return {module:model/InlineResponse2004} The populated <code>InlineResponse2004</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new InlineObject();
+            obj = obj || new InlineResponse2004();
 
             if (data.hasOwnProperty('message')) {
                 obj['message'] = ApiClient.convertToType(data['message'], 'String');
@@ -60,12 +62,12 @@ class InlineObject {
 /**
  * @member {String} message
  */
-InlineObject.prototype['message'] = undefined;
+InlineResponse2004.prototype['message'] = undefined;
 
 
 
 
 
 
-export default InlineObject;
+export default InlineResponse2004;
 

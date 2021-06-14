@@ -33,9 +33,18 @@
             </thead>
             <tbody>
                     <tr>
-                            <td class="swagger--summary-path" rowspan="1">
+                            <td class="swagger--summary-path" rowspan="2">
                                 <a href="#path--notification">/notification</a>
                             </td>
+                        <td>
+                            <a href="#operation--notification-get">GET</a>
+                        </td>
+                        <td>
+                            <p>Retrieve notification product</p>
+        
+                        </td>
+                    </tr>
+                    <tr>
                         <td>
                             <a href="#operation--notification-post">POST</a>
                         </td>
@@ -83,6 +92,72 @@
     
         
         <span id="path--notification"></span>
+            <div id="operation--notification-get" class="swagger--panel-operation-get panel">
+                <div class="panel-heading">
+                    <div class="operation-summary">Retrieve notification product</div>
+                    <h3 class="panel-title"><span class="operation-name">GET</span> <strong>/notification</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <section class="sw-operation-description">
+                        <p>An endpoint to retrieve details about the Ambianic notifications product.</p>
+            
+                    </section>
+            
+                    
+                        <section class="sw-request-params">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="sw-param-name"></th>
+                                    <th class="sw-param-description"></th>
+                                    <th class="sw-param-type"></th>
+                                    <th class="sw-param-data-type"></th>
+                                    <th class="sw-param-annotation"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>
+                                                Access-Control-Allow-Origin
+                                            </td>
+                                            <td></td>
+                                            <td>header</td>
+                                            <td>
+                                        <span class="json-property-type">object</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    
+                        <section class="sw-responses">
+                    
+                            <dl>
+                                    <dt class="sw-response-200">
+                                        200 OK
+                                    
+                                    </dt>
+                                    <dd class="sw-response-200">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                            </div>
+                                            
+                                            </div>                </dd>
+                            </dl>
+                        </section>
+                </div>
+            </div>
             <div id="operation--notification-post" class="swagger--panel-operation-post panel">
                 <div class="panel-heading">
                     <div class="operation-summary">Send an event detection notification</div>
