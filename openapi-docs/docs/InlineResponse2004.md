@@ -4,6 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**message** | **String** |  | 
+**product** | [**InlineResponse2004Product**](InlineResponse2004Product.md) |  | 
 
 

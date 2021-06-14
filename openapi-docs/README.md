@@ -127,7 +127,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AmbianicCloudApiCollection.DefaultApi* | [**createSubscription**](docs/DefaultApi.md#createSubscription) | **POST** /subscription | Subscribe a user to Ambianic&#39;s Premium Services
 *AmbianicCloudApiCollection.DefaultApi* | [**deleteSubscription**](docs/DefaultApi.md#deleteSubscription) | **DELETE** /subscription | Delete an Ambianic&#39;s user subscription
-*AmbianicCloudApiCollection.DefaultApi* | [**getNotificationProduct**](docs/DefaultApi.md#getNotificationProduct) | **GET** /notification | Retrieve notification product
+*AmbianicCloudApiCollection.DefaultApi* | [**getNotificationProduct**](docs/DefaultApi.md#getNotificationProduct) | **GET** /product | Retrieve notification product
 *AmbianicCloudApiCollection.DefaultApi* | [**getSubscriptionData**](docs/DefaultApi.md#getSubscriptionData) | **GET** /subscription | Get a user&#39;s subscription data
 *AmbianicCloudApiCollection.DefaultApi* | [**sendNotification**](docs/DefaultApi.md#sendNotification) | **POST** /notification | Send an event detection notification
 
@@ -140,8 +140,8 @@ Class | Method | HTTP request | Description
  - [AmbianicCloudApiCollection.InlineResponse2001](docs/InlineResponse2001.md)
  - [AmbianicCloudApiCollection.InlineResponse2002](docs/InlineResponse2002.md)
  - [AmbianicCloudApiCollection.InlineResponse2003](docs/InlineResponse2003.md)
- - [AmbianicCloudApiCollection.InlineResponse2003Product](docs/InlineResponse2003Product.md)
  - [AmbianicCloudApiCollection.InlineResponse2004](docs/InlineResponse2004.md)
+ - [AmbianicCloudApiCollection.InlineResponse2004Product](docs/InlineResponse2004Product.md)
 
 
 ## Documentation for Authorization

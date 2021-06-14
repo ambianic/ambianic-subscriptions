@@ -28,36 +28,6 @@ const transport = nodemailer.createTransport({
 const sender = process.env.SMTP_SENDER;
 
 exports.handler = async (event, context, callback) => {
-
-  if (event.httpMethod === "OPTIONS") {
-    // for preflight check
-    callback(null, {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({ status: "OK" }),
-    });
-  } else if (event.httpMethod === "GET") {
-
-    try {
-      const product = await stripe.products.retrieve(process.env.EMAIL_PRODUCT_ID);
-
-      console.log(product)
-
-      callback(null, {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify({ product }),
-      });
-    } catch (error) {
-      callback(null, {
-        statusCode: 500,
-        headers,
-        body: JSON.stringify({ error }),
-      });
-    }
-
-
-  } else if (event.httpMethod === "POST") {
     const { userId, notification } = JSON.parse(`${event.body}`);
 
     try {
@@ -113,6 +83,4 @@ exports.handler = async (event, context, callback) => {
         body: JSON.stringify({ error: error.message }),
       });
     }
-  }
-
 };

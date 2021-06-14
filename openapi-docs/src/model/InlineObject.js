@@ -22,10 +22,11 @@ class InlineObject {
     /**
      * Constructs a new <code>InlineObject</code>.
      * @alias module:model/InlineObject
+     * @param message {String} 
      */
-    constructor() { 
+    constructor(message) { 
         
-        InlineObject.initialize(this);
+        InlineObject.initialize(this, message);
     }
 
     /**
@@ -33,7 +34,8 @@ class InlineObject {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj) { 
+    static initialize(obj, message) { 
+        obj['message'] = message;
     }
 
     /**

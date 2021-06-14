@@ -12,7 +12,6 @@
  */
 
 import ApiClient from '../ApiClient';
-import InlineResponse2003Product from './InlineResponse2003Product';
 
 /**
  * The InlineResponse2003 model module.
@@ -23,11 +22,11 @@ class InlineResponse2003 {
     /**
      * Constructs a new <code>InlineResponse2003</code>.
      * @alias module:model/InlineResponse2003
-     * @param product {module:model/InlineResponse2003Product} 
+     * @param message {String} 
      */
-    constructor(product) { 
+    constructor(message) { 
         
-        InlineResponse2003.initialize(this, product);
+        InlineResponse2003.initialize(this, message);
     }
 
     /**
@@ -35,8 +34,8 @@ class InlineResponse2003 {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, product) { 
-        obj['product'] = product;
+    static initialize(obj, message) { 
+        obj['message'] = message;
     }
 
     /**
@@ -50,8 +49,8 @@ class InlineResponse2003 {
         if (data) {
             obj = obj || new InlineResponse2003();
 
-            if (data.hasOwnProperty('product')) {
-                obj['product'] = InlineResponse2003Product.constructFromObject(data['product']);
+            if (data.hasOwnProperty('message')) {
+                obj['message'] = ApiClient.convertToType(data['message'], 'String');
             }
         }
         return obj;
@@ -61,9 +60,9 @@ class InlineResponse2003 {
 }
 
 /**
- * @member {module:model/InlineResponse2003Product} product
+ * @member {String} message
  */
-InlineResponse2003.prototype['product'] = undefined;
+InlineResponse2003.prototype['message'] = undefined;
 
 
 

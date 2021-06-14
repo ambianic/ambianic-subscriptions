@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createSubscription**](DefaultApi.md#createSubscription) | **POST** /subscription | Subscribe a user to Ambianic&#39;s Premium Services
 [**deleteSubscription**](DefaultApi.md#deleteSubscription) | **DELETE** /subscription | Delete an Ambianic&#39;s user subscription
-[**getNotificationProduct**](DefaultApi.md#getNotificationProduct) | **GET** /notification | Retrieve notification product
+[**getNotificationProduct**](DefaultApi.md#getNotificationProduct) | **GET** /product | Retrieve notification product
 [**getSubscriptionData**](DefaultApi.md#getSubscriptionData) | **GET** /subscription | Get a user&#39;s subscription data
 [**sendNotification**](DefaultApi.md#sendNotification) | **POST** /notification | Send an event detection notification
 
@@ -120,7 +120,7 @@ No authorization required
 
 ## getNotificationProduct
 
-> InlineResponse2003 getNotificationProduct(accessControlAllowOrigin, opts)
+> InlineResponse2004 getNotificationProduct(accessControlAllowOrigin, opts)
 
 Retrieve notification product
 
@@ -134,7 +134,7 @@ import AmbianicCloudApiCollection from 'ambianic_cloud_api_collection';
 let apiInstance = new AmbianicCloudApiCollection.DefaultApi();
 let accessControlAllowOrigin = *; // String | 
 let opts = {
-  'inlineObject': new AmbianicCloudApiCollection.InlineObject() // InlineObject | 
+  'inlineObject1': new AmbianicCloudApiCollection.InlineObject1() // InlineObject1 | 
 };
 apiInstance.getNotificationProduct(accessControlAllowOrigin, opts, (error, data, response) => {
   if (error) {
@@ -151,11 +151,11 @@ apiInstance.getNotificationProduct(accessControlAllowOrigin, opts, (error, data,
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **accessControlAllowOrigin** | **String**|  | 
- **inlineObject** | [**InlineObject**](InlineObject.md)|  | [optional] 
+ **inlineObject1** | [**InlineObject1**](InlineObject1.md)|  | [optional] 
 
 ### Return type
 
-[**InlineResponse2003**](InlineResponse2003.md)
+[**InlineResponse2004**](InlineResponse2004.md)
 
 ### Authorization
 
@@ -222,7 +222,7 @@ No authorization required
 
 ## sendNotification
 
-> InlineResponse2004 sendNotification(userId, notification, accessControlAllowOrigin, opts)
+> InlineResponse2003 sendNotification(userId, notification, accessControlAllowOrigin, opts)
 
 Send an event detection notification
 
@@ -238,7 +238,7 @@ let userId = AUTHO_USER_ID ; // String | ID of the user that owns the Edge Devic
 let notification = {dateTime: "monday"}; // String | Notification object containing detected event details from running ambianic edge device
 let accessControlAllowOrigin = *; // String | 
 let opts = {
-  'inlineObject1': new AmbianicCloudApiCollection.InlineObject1() // InlineObject1 | 
+  'inlineObject': new AmbianicCloudApiCollection.InlineObject() // InlineObject | 
 };
 apiInstance.sendNotification(userId, notification, accessControlAllowOrigin, opts, (error, data, response) => {
   if (error) {
@@ -257,11 +257,11 @@ Name | Type | Description  | Notes
  **userId** | **String**| ID of the user that owns the Edge Device triggering the notification | 
  **notification** | **String**| Notification object containing detected event details from running ambianic edge device | 
  **accessControlAllowOrigin** | **String**|  | 
- **inlineObject1** | [**InlineObject1**](InlineObject1.md)|  | [optional] 
+ **inlineObject** | [**InlineObject**](InlineObject.md)|  | [optional] 
 
 ### Return type
 
-[**InlineResponse2004**](InlineResponse2004.md)
+[**InlineResponse2003**](InlineResponse2003.md)
 
 ### Authorization
 

@@ -265,7 +265,7 @@
 			"response": []
 		},
 		{
-			"name": "notification",
+			"name": "product",
 			"event": [
 				{
 					"listen": "test",
@@ -301,12 +301,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{FUNCTION_URL}}/notification",
+					"raw": "{{FUNCTION_URL}}/product",
 					"host": [
 						"{{FUNCTION_URL}}"
 					],
 					"path": [
-						"notification"
+						"product"
 					],
 					"query": [
 						{

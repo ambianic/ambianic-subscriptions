@@ -400,6 +400,7 @@ paths:
                 example-1:
                   message: Notification Sent
             examples: {}
+  /product:
     get:
       summary: Retrieve notification product
       description: An endpoint to retrieve details about the Ambianic notifications product.
@@ -429,8 +430,8 @@ paths:
                       attributes:
                         type: array
                         items:
-                          required: []
-                          properties: {}
+                          required: [ ]
+                          properties: { }
                       created:
                         type: number
                       description:
@@ -442,30 +443,30 @@ paths:
                       images:
                         type: array
                         items:
-                          required: []
-                          properties: {}
+                          required: [ ]
+                          properties: { }
                       livemode:
                         type: boolean
                       metadata:
                         type: object
-                        properties: {}
-                        required: []
+                        properties: { }
+                        required: [ ]
                       name:
                         type: string
                         minLength: 1
                       object:
                         type: string
                         minLength: 1
-                      package_dimensions: {}
-                      shippable: {}
-                      statement_descriptor: {}
+                      package_dimensions: { }
+                      shippable: { }
+                      statement_descriptor: { }
                       type:
                         type: string
                         minLength: 1
-                      unit_label: {}
+                      unit_label: { }
                       updated:
                         type: number
-                      url: {}
+                      url: { }
                     required:
                       - active
                       - attributes
@@ -485,13 +486,13 @@ paths:
                   example-1:
                     product:
                       active: true
-                      attributes: []
+                      attributes: [ ]
                       created: 1614166650
                       description: Ambianic Email Notification product
                       id: prod_123456789
-                      images: []
+                      images: [ ]
                       livemode: false
-                      metadata: {}
+                      metadata: { }
                       name: Email_subs
                       object: product
                       package_dimensions: null
@@ -507,13 +508,13 @@ paths:
                   value:
                     product:
                       active: true
-                      attributes: []
+                      attributes: [ ]
                       created: 1614166650
                       description: Ambianic email notification product
                       id: prod_123456789
-                      images: []
+                      images: [ ]
                       livemode: false
-                      metadata: {}
+                      metadata: { }
                       name: Email_subs
                       object: product
                       package_dimensions: null
@@ -536,7 +537,7 @@ paths:
               x-examples:
                 example-1:
                   message: Notification Sent
-            examples: {}
+            examples: { }
 components:
   parameters:
     number:
