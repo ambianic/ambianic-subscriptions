@@ -64,7 +64,7 @@ exports.handler = async (
                       customer: customerID,
                       items: [
                           {
-                              price: process.env.EMAIL_PRODUCT_ID,
+                              price: process.env.EMAIL_PRODUCT_PRICE_ID,
                           },
                       ],
                   })
