@@ -14,7 +14,6 @@
 
 import ApiClient from './ApiClient';
 import InlineObject from './model/InlineObject';
-import InlineObject1 from './model/InlineObject1';
 import InlineResponse200 from './model/InlineResponse200';
 import InlineResponse2001 from './model/InlineResponse2001';
 import InlineResponse2002 from './model/InlineResponse2002';
@@ -67,12 +66,6 @@ export {
      * @property {module:model/InlineObject}
      */
     InlineObject,
-
-    /**
-     * The InlineObject1 model constructor.
-     * @property {module:model/InlineObject1}
-     */
-    InlineObject1,
 
     /**
      * The InlineResponse200 model constructor.

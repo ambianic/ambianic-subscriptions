@@ -21,7 +21,7 @@ Before executing the `netlify dev` command, create a `.env` file in the root dir
 # Access key from Stripe to access your Stripe resources
 STRIPE_KEY=STRIPE_KEY
 
-# The ID of the email price product used in billing subscribers.
+# The ID of the price entity attached to a product.
 EMAIL_PRODUCT_PRICE_ID=EMAIL_PRODUCT_PRICE_ID
  
 # Your Auth0 Domain
@@ -65,7 +65,7 @@ The following environment variables used within the serverless functions, and sh
 # Access key from Stripe to access your Stripe resources
 STRIPE_KEY=STRIPE_KEY
 
-# The ID of the email price product used in billing subscribers.
+# The ID of the price entity attached to a product.
 EMAIL_PRODUCT_PRICE_ID=EMAIL_PRODUCT_PRICE_ID
 
 # Your Auth0 Domain

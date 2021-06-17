@@ -3,7 +3,6 @@
 README.md
 docs/DefaultApi.md
 docs/InlineObject.md
-docs/InlineObject1.md
 docs/InlineResponse200.md
 docs/InlineResponse2001.md
 docs/InlineResponse2002.md
@@ -14,11 +13,9 @@ src/ApiClient.js
 src/api/DefaultApi.js
 src/index.js
 src/model/InlineObject.js
-src/model/InlineObject1.js
 src/model/InlineResponse200.js
 src/model/InlineResponse2001.js
 src/model/InlineResponse2002.js
 src/model/InlineResponse2003.js
 src/model/InlineResponse2004.js
 src/model/InlineResponse2004Product.js
-test/model/InlineResponse2004Product.spec.js

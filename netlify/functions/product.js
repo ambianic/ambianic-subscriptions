@@ -7,19 +7,28 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-exports.handler = async (event, context, callback) => {
+exports.handler = async ({ httpMethod, queryStringParameters }, context, callback) => {
+  const { productId } = queryStringParameters
 
-  if (event.httpMethod === "OPTIONS") {
+  if (!productId) {
+    callback(null, {
+      statusCode: 422,
+      headers,
+      body: JSON.stringify({ message: "Provide productId param to retrieve product details" }),
+    });
+  }
+
+  if (httpMethod === "OPTIONS") {
     // for preflight check
     callback(null, {
       statusCode: 200,
       headers,
       body: JSON.stringify({ status: "OK" }),
     });
-  } else if (event.httpMethod === "GET") {
+  } else if (httpMethod === "GET") {
 
     try {
-      const product = await stripe.products.retrieve(process.env.EMAIL_PRODUCT_ID);
+      const product = await stripe.products.retrieve(productId);
 
       callback(null, {
         statusCode: 200,

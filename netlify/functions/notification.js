@@ -72,7 +72,7 @@ exports.handler = async (event, context, callback) => {
           statusCode: 403,
           headers,
           body: JSON.stringify({
-            message: "NO ACTIVE SUBSCRIPTION TO SEND EMAIL",
+            message: "Premium subscription inactive. Cannot send notification email. Please (re)activate premium subscription service.",
           }),
         });
       }

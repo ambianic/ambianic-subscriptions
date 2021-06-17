@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createSubscription**](DefaultApi.md#createSubscription) | **POST** /subscription | Subscribe a user to Ambianic&#39;s Premium Services
 [**deleteSubscription**](DefaultApi.md#deleteSubscription) | **DELETE** /subscription | Delete an Ambianic&#39;s user subscription
-[**getNotificationProduct**](DefaultApi.md#getNotificationProduct) | **GET** /product | Retrieve notification product
+[**getProductInfo**](DefaultApi.md#getProductInfo) | **GET** /product | An endpoint to retrieve details about an Ambianic premium subscription product.
 [**getSubscriptionData**](DefaultApi.md#getSubscriptionData) | **GET** /subscription | Get a user&#39;s subscription data
 [**sendNotification**](DefaultApi.md#sendNotification) | **POST** /notification | Send an event detection notification
 
@@ -118,13 +118,13 @@ No authorization required
 - **Accept**: application/json
 
 
-## getNotificationProduct
+## getProductInfo
 
-> InlineResponse2004 getNotificationProduct(accessControlAllowOrigin, opts)
+> InlineResponse2004 getProductInfo(accessControlAllowOrigin, opts)
 
-Retrieve notification product
+An endpoint to retrieve details about an Ambianic premium subscription product.
 
-An endpoint to retrieve details about the Ambianic notifications product.
+Retrieve product and pricing information associated with an Ambianic product.
 
 ### Example
 
@@ -134,9 +134,9 @@ import AmbianicCloudApiCollection from 'ambianic_cloud_api_collection';
 let apiInstance = new AmbianicCloudApiCollection.DefaultApi();
 let accessControlAllowOrigin = *; // String | 
 let opts = {
-  'inlineObject1': new AmbianicCloudApiCollection.InlineObject1() // InlineObject1 | 
+  'productId': "productId_example" // String | Unique ID of product to be retrieved
 };
-apiInstance.getNotificationProduct(accessControlAllowOrigin, opts, (error, data, response) => {
+apiInstance.getProductInfo(accessControlAllowOrigin, opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -151,7 +151,7 @@ apiInstance.getNotificationProduct(accessControlAllowOrigin, opts, (error, data,
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **accessControlAllowOrigin** | **String**|  | 
- **inlineObject1** | [**InlineObject1**](InlineObject1.md)|  | [optional] 
+ **productId** | **String**| Unique ID of product to be retrieved | [optional] 
 
 ### Return type
 
@@ -163,7 +163,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 

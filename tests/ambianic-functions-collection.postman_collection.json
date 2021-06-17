@@ -301,7 +301,7 @@
 					}
 				],
 				"url": {
-					"raw": "{{FUNCTION_URL}}/product",
+					"raw": "{{FUNCTION_URL}}/product?productId=PRODUCT_ID",
 					"host": [
 						"{{FUNCTION_URL}}"
 					],
@@ -310,13 +310,13 @@
 					],
 					"query": [
 						{
-							"key": "",
-							"value": "*",
-							"disabled": true
+							"key": "productId",
+							"value": "PRODUCT_ID",
+							"description": "Unique ID of product to be retrieved"
 						}
 					]
 				},
-				"description": "Retrieve the notification product details from Stripe"
+				"description": "An endpoint to retrieve details about an Ambianic premium subscription product."
 			},
 			"response": []
 		}
