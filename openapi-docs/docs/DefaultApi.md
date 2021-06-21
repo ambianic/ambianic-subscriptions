@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createSubscription**](DefaultApi.md#createSubscription) | **POST** /subscription | Subscribe a user to Ambianic&#39;s Premium Services
 [**deleteSubscription**](DefaultApi.md#deleteSubscription) | **DELETE** /subscription | Delete an Ambianic&#39;s user subscription
+[**getProductInfo**](DefaultApi.md#getProductInfo) | **GET** /product | An endpoint to retrieve details about an Ambianic premium subscription product.
 [**getSubscriptionData**](DefaultApi.md#getSubscriptionData) | **GET** /subscription | Get a user&#39;s subscription data
 [**sendNotification**](DefaultApi.md#sendNotification) | **POST** /notification | Send an event detection notification
 
@@ -106,6 +107,55 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**InlineResponse2002**](InlineResponse2002.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## getProductInfo
+
+> InlineResponse2004 getProductInfo(accessControlAllowOrigin, opts)
+
+An endpoint to retrieve details about an Ambianic premium subscription product.
+
+Retrieve product and pricing information associated with an Ambianic product.
+
+### Example
+
+```javascript
+import AmbianicCloudApiCollection from 'ambianic_cloud_api_collection';
+
+let apiInstance = new AmbianicCloudApiCollection.DefaultApi();
+let accessControlAllowOrigin = *; // String | 
+let opts = {
+  'productId': "productId_example" // String | Unique ID of product to be retrieved
+};
+apiInstance.getProductInfo(accessControlAllowOrigin, opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accessControlAllowOrigin** | **String**|  | 
+ **productId** | **String**| Unique ID of product to be retrieved | [optional] 
+
+### Return type
+
+[**InlineResponse2004**](InlineResponse2004.md)
 
 ### Authorization
 

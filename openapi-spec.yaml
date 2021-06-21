@@ -400,6 +400,134 @@ paths:
                 example-1:
                   message: Notification Sent
             examples: {}
+  /product:
+    get:
+      summary: An endpoint to retrieve details about an Ambianic premium subscription product.
+      description: Retrieve product and pricing information associated with an Ambianic product.
+      operationId: get-product-info
+      parameters:
+        - name: Access-Control-Allow-Origin
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: '*'
+        - schema:
+            type: string
+          in: query
+          name: productId
+          description: Unique ID of product to be retrieved
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  product:
+                    type: object
+                    properties:
+                      active:
+                        type: boolean
+                      attributes:
+                        type: array
+                        items:
+                          required: []
+                          properties: {}
+                      created:
+                        type: number
+                      description:
+                        type: string
+                        minLength: 1
+                      id:
+                        type: string
+                        minLength: 1
+                      images:
+                        type: array
+                        items:
+                          required: []
+                          properties: {}
+                      livemode:
+                        type: boolean
+                      metadata:
+                        type: object
+                        properties: {}
+                        required: []
+                      name:
+                        type: string
+                        minLength: 1
+                      object:
+                        type: string
+                        minLength: 1
+                      package_dimensions: {}
+                      shippable: {}
+                      statement_descriptor: {}
+                      type:
+                        type: string
+                        minLength: 1
+                      unit_label: {}
+                      updated:
+                        type: number
+                      url: {}
+                    required:
+                      - active
+                      - attributes
+                      - created
+                      - description
+                      - id
+                      - images
+                      - livemode
+                      - metadata
+                      - name
+                      - object
+                      - type
+                      - updated
+                required:
+                  - product
+                x-examples:
+                  example-1:
+                    product:
+                      active: true
+                      attributes: []
+                      created: 1614166650
+                      description: Ambianic product
+                      id: prod_123456789
+                      images: []
+                      livemode: false
+                      metadata: {}
+                      name: Email_subs
+                      object: product
+                      package_dimensions: null
+                      shippable: null
+                      statement_descriptor: null
+                      type: service
+                      unit_label: null
+                      updated: 1615738932
+                      url: null
+              examples:
+                product-reponse:
+                  value:
+                    product:
+                      active: true
+                      attributes: []
+                      created: 1614166650
+                      description: Ambianic product
+                      id: prod_123456789
+                      images: []
+                      livemode: false
+                      metadata: {}
+                      name: Email_subs
+                      object: product
+                      package_dimensions: null
+                      shippable: null
+                      statement_descriptor: null
+                      type: service
+                      uni_label: null
+                      updated: 1615738932
+                      url: null
 components:
   parameters:
     number:

@@ -263,6 +263,62 @@
 				"description": "A POST request to create a new customer with Stripe under Ambianic and also subscribe user to Ambianic Premium Service"
 			},
 			"response": []
+		},
+		{
+			"name": "product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonResponse = pm.response.json()",
+							"",
+							"const productResponse = jsonResponse.product",
+							"",
+							"pm.test(\"It returns the payload of the email notification product\", () => {",
+							"   pm.expect(jsonResponse).to.be.an(\"object\");",
+							"   pm.expect(productResponse).to.be.an(\"object\");",
+							"})",
+							"",
+							"pm.test(\"It returns an active email notification product\", () => {",
+							"    pm.expect(productResponse.active).to.be.an(\"boolean\")",
+							"    pm.expect(productResponse.active).to.be.true",
+							"",
+							"    pm.expect(productResponse.id).to.be.an(\"string\");",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Access-Control-Allow-Origin",
+						"value": "*",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{FUNCTION_URL}}/product?productId=PRODUCT_ID",
+					"host": [
+						"{{FUNCTION_URL}}"
+					],
+					"path": [
+						"product"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "PRODUCT_ID",
+							"description": "Unique ID of product to be retrieved"
+						}
+					]
+				},
+				"description": "An endpoint to retrieve details about an Ambianic premium subscription product."
+			},
+			"response": []
 		}
 	],
 	"event": [

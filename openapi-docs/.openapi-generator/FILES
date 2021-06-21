@@ -7,6 +7,8 @@ docs/InlineResponse200.md
 docs/InlineResponse2001.md
 docs/InlineResponse2002.md
 docs/InlineResponse2003.md
+docs/InlineResponse2004.md
+docs/InlineResponse2004Product.md
 src/ApiClient.js
 src/api/DefaultApi.js
 src/index.js
@@ -15,3 +17,5 @@ src/model/InlineResponse200.js
 src/model/InlineResponse2001.js
 src/model/InlineResponse2002.js
 src/model/InlineResponse2003.js
+src/model/InlineResponse2004.js
+src/model/InlineResponse2004Product.js

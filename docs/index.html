@@ -45,6 +45,18 @@
                         </td>
                     </tr>
                     <tr>
+                            <td class="swagger--summary-path" rowspan="1">
+                                <a href="#path--product">/product</a>
+                            </td>
+                        <td>
+                            <a href="#operation--product-get">GET</a>
+                        </td>
+                        <td>
+                            <p>An endpoint to retrieve details about an Ambianic premium subscription product.</p>
+        
+                        </td>
+                    </tr>
+                    <tr>
                             <td class="swagger--summary-path" rowspan="3">
                                 <a href="#path--subscription">/subscription</a>
                             </td>
@@ -154,6 +166,89 @@
                                             </td>
                                             <td>
                                                     <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    
+                        <section class="sw-responses">
+                    
+                            <dl>
+                                    <dt class="sw-response-200">
+                                        200 OK
+                                    
+                                    </dt>
+                                    <dd class="sw-response-200">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                            </div>
+                                            
+                                            </div>                </dd>
+                            </dl>
+                        </section>
+                </div>
+            </div>
+        
+        <span id="path--product"></span>
+            <div id="operation--product-get" class="swagger--panel-operation-get panel">
+                <div class="panel-heading">
+                    <div class="operation-summary">An endpoint to retrieve details about an Ambianic premium subscription product.</div>
+                    <h3 class="panel-title"><span class="operation-name">GET</span> <strong>/product</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <section class="sw-operation-description">
+                        <p>Retrieve product and pricing information associated with an Ambianic product.</p>
+            
+                    </section>
+            
+                    
+                        <section class="sw-request-params">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="sw-param-name"></th>
+                                    <th class="sw-param-description"></th>
+                                    <th class="sw-param-type"></th>
+                                    <th class="sw-param-data-type"></th>
+                                    <th class="sw-param-annotation"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>
+                                                Access-Control-Allow-Origin
+                                            </td>
+                                            <td></td>
+                                            <td>header</td>
+                                            <td>
+                                        <span class="json-property-type">object</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                productId
+                                            </td>
+                                            <td><p>Unique ID of product to be retrieved</p>
+                                        </td>
+                                            <td>query</td>
+                                            <td>
+                                        <span class="json-property-type">object</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
                                             </td>
                                         </tr>
                                 </tbody>

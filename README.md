@@ -9,7 +9,7 @@ The image below shows the architecture of these serverless functions in connecti
 
 ## Running Locally
 
-The serverless functions within this project are managed using [netlify-dev](https://www.netlify.com/products/dev/). 
+The serverless functions within this project are managed using [netlify-dev](https://www.netlify.com/products/dev/).
 Start the function emulator using `yarn netlify-dev` command to handle any HTTP request made to any of the created functions on port `5050`.
 
 Service credentials used within the serverless functions in this project are loaded as environment variables using [dotenv](https://www.npmjs.com/package/dotenv).
@@ -21,9 +21,9 @@ Before executing the `netlify dev` command, create a `.env` file in the root dir
 # Access key from Stripe to access your Stripe resources
 STRIPE_KEY=STRIPE_KEY
 
-# The ID of the email price product used in billing subscribers.
+# The ID of the price entity attached to a product.
 EMAIL_PRODUCT_PRICE_ID=EMAIL_PRODUCT_PRICE_ID
-
+ 
 # Your Auth0 Domain
 AUTHO_DOMAIN=AUTHO_DOMAIN
 
@@ -60,12 +60,12 @@ The following sensitive credentials are used within the CI jobs are stored using
 ## Cloud Deployment
 All serverless functions within this project were designed to be deployed and executed as [Netlify Functions](https://www.netlify.com/products/functions/).
 The following environment variables used within the serverless functions, and should be added in your application's [Build Environment Variables](https://docs.netlify.com/configure-builds/environment-variables/) when the project is deployed to [Netlify](https://www.netlify.com).
-    
+
 ```
 # Access key from Stripe to access your Stripe resources
 STRIPE_KEY=STRIPE_KEY
 
-# The ID of the email price product used in billing subscribers.
+# The ID of the price entity attached to a product.
 EMAIL_PRODUCT_PRICE_ID=EMAIL_PRODUCT_PRICE_ID
 
 # Your Auth0 Domain

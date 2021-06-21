@@ -18,6 +18,7 @@ import InlineResponse200 from '../model/InlineResponse200';
 import InlineResponse2001 from '../model/InlineResponse2001';
 import InlineResponse2002 from '../model/InlineResponse2002';
 import InlineResponse2003 from '../model/InlineResponse2003';
+import InlineResponse2004 from '../model/InlineResponse2004';
 
 /**
 * Default service.
@@ -167,6 +168,53 @@ export default class DefaultApi {
       let returnType = InlineResponse2002;
       return this.apiClient.callApi(
         '/subscription', 'DELETE',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getProductInfo operation.
+     * @callback module:api/DefaultApi~getProductInfoCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/InlineResponse2004} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * An endpoint to retrieve details about an Ambianic premium subscription product.
+     * Retrieve product and pricing information associated with an Ambianic product.
+     * @param {String} accessControlAllowOrigin 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.productId Unique ID of product to be retrieved
+     * @param {module:api/DefaultApi~getProductInfoCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/InlineResponse2004}
+     */
+    getProductInfo(accessControlAllowOrigin, opts, callback) {
+      opts = opts || {};
+      let postBody = null;
+      // verify the required parameter 'accessControlAllowOrigin' is set
+      if (accessControlAllowOrigin === undefined || accessControlAllowOrigin === null) {
+        throw new Error("Missing the required parameter 'accessControlAllowOrigin' when calling getProductInfo");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'productId': opts['productId']
+      };
+      let headerParams = {
+        'Access-Control-Allow-Origin': accessControlAllowOrigin
+      };
+      let formParams = {
+      };
+
+      let authNames = [];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = InlineResponse2004;
+      return this.apiClient.callApi(
+        '/product', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );
