@@ -40,7 +40,7 @@
     "@semantic-release/npm": "^7.1.0",
     "@semantic-release/release-notes-generator": "^9.0.2",
     "parcel-bundler": "^1.12.5",
-    "semantic-release": "^17.4.2"
+    "semantic-release": "^19.0.3"
   },
   "repository": {
     "type": "git",
